@@ -18,12 +18,19 @@ class Sidenav extends React.Component {
            <ClickOutside
                 onClickOutside={() => {
                     this.setState({ expanded: false });
+                    this.props.updateState(false);
                 }}
             >
-            <SideNav style={{marginTop:'56px', backgroundColor:"#00695c"}}
+            <SideNav style={{backgroundColor:"#00695c", height: "100vh", position: 'fixed'}}
                 expanded={this.state.expanded}
                 onToggle={(expanded) => {
                     this.setState({ expanded });
+                    if(expanded) {
+                        this.props.updateState(true);
+                    } else {
+                        this.props.updateState(false);
+                    }
+                    
                 }}
             >
             <SideNav.Toggle />
@@ -36,23 +43,77 @@ class Sidenav extends React.Component {
                         Home
                     </NavText>
                 </NavItem>
-                <NavItem eventKey="charts">
+                <NavItem eventKey="reservation">
                     <NavIcon>
-                        <MDBIcon icon="chart-bar" style={{ fontSize: '1.75em' }}/>
+                    <MDBIcon far icon="calendar-alt" style={{ fontSize: '1.75em' }}/>
                     </NavIcon>
                     <NavText>
-                        Charts
+                        Reservation
                     </NavText>
-                    <NavItem eventKey="charts/linechart">
+                    <NavItem eventKey="reservation/gym">
                         <NavText>
-                            Line Chart
+                            Gym
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="charts/barchart">
+                    <NavItem eventKey="reservation/tennis">
                         <NavText>
-                            Bar Chart
+                            Tennis table
                         </NavText>
                     </NavItem>
+                    <NavItem eventKey="reservation/bowling">
+                        <NavText>
+                            Bowling
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="reservation/billiards">
+                        <NavText>
+                            Billiards
+                        </NavText>
+                    </NavItem>
+                </NavItem>
+                <NavItem eventKey="price-list">
+                    <NavIcon>
+                        <MDBIcon icon="hand-holding-usd" style={{ fontSize: '1.75em' }}/>
+                    </NavIcon>
+                    <NavText>
+                        Price
+                    </NavText>
+                    <NavItem eventKey="price-list/gym">
+                        <NavText>
+                            Gym
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="price-list/tennis">
+                        <NavText>
+                            Tennis table
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="price-list/bowling">
+                        <NavText>
+                            Bowling
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="price-list/billiards">
+                        <NavText>
+                            Billiards
+                        </NavText>
+                    </NavItem>
+                </NavItem>
+                <NavItem eventKey="gallery">
+                    <NavIcon>
+                    <MDBIcon far icon="image" style={{ fontSize: '1.75em' }}/>
+                    </NavIcon>
+                    <NavText>
+                        Gallery
+                    </NavText>
+                </NavItem>
+                <NavItem eventKey="contact">
+                    <NavIcon>
+                    <MDBIcon icon="phone-alt" style={{ fontSize: '1.75em' }}/>
+                    </NavIcon>
+                    <NavText>
+                        Contact
+                    </NavText>
                 </NavItem>
             </SideNav.Nav>
             </SideNav>
