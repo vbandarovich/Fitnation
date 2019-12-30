@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
+@import url('https://fonts.googleapis.com/css?family=Solway|Teko&display=swap');
 
 body, html {
     height: 100%;
@@ -29,8 +29,13 @@ body, html {
     background-image: url("../assets/gym.jpg");
   }
 
-  .oswald{
-    font-family: 'Oswald', sans-serif;
+  .solway{
+    font-family: 'Solway', serif;
+ }
+
+ .teko {
+    font-family: 'Teko', sans-serif;
+    font-size: 40px;
  }
  
  h4{
@@ -57,11 +62,11 @@ body, html {
  .card:hover .card-img,
  .card:focus .card-img {
    transform: scale(1.02);
-   opacity:0.5;
+   opacity:0.4;
  }
  
  .card:hover .card-img-overlay{
-     color:#730d0d;
+     color:#006400;
  }
  
  .card-img-overlay>h4, .card-img-overlay>p{

@@ -24,7 +24,7 @@ class App extends React.Component {
     return(
           <BrowserRouter>
             <Navbar expanded={this.state.expanded}/>
-            <Sidenav updateState={this.updateState}/>
+            <Sidenav updateState={this.updateState} selected='home'/>
             <HomePage />
           </BrowserRouter>
     )

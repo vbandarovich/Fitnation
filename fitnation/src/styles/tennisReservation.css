@@ -1,0 +1,14 @@
+.tennis{
+    width: 100hv;
+    margin-top: 30px;    
+}
+
+.mesta{
+    height: 50px;
+    width: 100px;
+    background: silver;
+    margin: 20px;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+}

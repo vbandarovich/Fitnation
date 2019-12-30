@@ -9,7 +9,8 @@ class Sidenav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            expanded: false,
+            selected: props.selected
         }
 
     }
@@ -34,15 +35,15 @@ class Sidenav extends React.Component {
                 }}
             >
             <SideNav.Toggle />
-            <SideNav.Nav defaultSelected="home">
-                <NavItem eventKey="home">
+            <SideNav.Nav defaultSelected={this.state.selected}>           
+                <NavItem onClick={()=> window.location='/'} eventKey="home">                  
                     <NavIcon>
                         <MDBIcon icon="home" style={{ fontSize: '1.75em' }}/>
-                    </NavIcon>
+                    </NavIcon>                   
                     <NavText>
                         Home
-                    </NavText>
-                </NavItem>
+                    </NavText>                        
+                </NavItem>          
                 <NavItem eventKey="reservation">
                     <NavIcon>
                     <MDBIcon far icon="calendar-alt" style={{ fontSize: '1.75em' }}/>
@@ -55,7 +56,7 @@ class Sidenav extends React.Component {
                             Gym
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="reservation/tennis">
+                    <NavItem onClick={()=> window.location='/reservation/tennis'} eventKey="reservation/tennis">
                         <NavText>
                             Tennis table
                         </NavText>
@@ -76,7 +77,7 @@ class Sidenav extends React.Component {
                         <MDBIcon icon="hand-holding-usd" style={{ fontSize: '1.75em' }}/>
                     </NavIcon>
                     <NavText>
-                        Price
+                        Price-list
                     </NavText>
                     <NavItem eventKey="price-list/gym">
                         <NavText>

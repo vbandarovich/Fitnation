@@ -9,7 +9,7 @@ import { MDBNavbar,
     MDBDropdownToggle, 
     MDBDropdownMenu, 
     MDBDropdownItem, 
-    MDBIcon } from "mdbreact";
+    MDBIcon } from "mdbreact";  
 
 class Navbar extends React.Component {
 
@@ -45,8 +45,8 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left>
-                                <MDBDropdownItem href="#!">Sign In</MDBDropdownItem>
-                                <MDBDropdownItem href="#!">Sign Up</MDBDropdownItem>
+                                <a href="/login"><MDBDropdownItem>Sign In</MDBDropdownItem></a>
+                                <a href="/register"><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
                         </MDBNavItem>
@@ -83,9 +83,9 @@ class Navbar extends React.Component {
                                 <MDBDropdownToggle nav caret>
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
-                                <MDBDropdownMenu basic left>
-                                <MDBDropdownItem href="#!">Sign In</MDBDropdownItem>
-                                <MDBDropdownItem href="#!">Sign Up</MDBDropdownItem>
+                                <MDBDropdownMenu basic>
+                                <a href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
+                                <a href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
                         </MDBNavItem>
