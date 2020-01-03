@@ -2,11 +2,11 @@ import React from 'react';
 import '../../styles/tennisReservation.css';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
+import TimeSelect from './timeSelect';
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
+  KeyboardDatePicker } from '@material-ui/pickers';
+import UserDataInputs from './userDataInputs';
 
 
 class TennisReservation extends React.Component {
@@ -31,16 +31,15 @@ class TennisReservation extends React.Component {
             return z_mest;
         }
 
-        for(let i=0;i<l.length;i++) {
+        for(let i = 0; i < l.length; i++) {
             l[i].onclick = function(){
                 if(this.style.background === 'red') {
                     this.style.background='silver';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+Count_Mest ();
-                } else {
+                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
+                } else if(this.style.background !== 'SlateGray'){
                     this.style.background='red';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+Count_Mest ();
-                }
-                
+                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
+                } 
             }
         }
 
@@ -48,15 +47,44 @@ class TennisReservation extends React.Component {
             this.setState({
                 selectedDate: date
             })
-          };
+        };
+
+        const mesta = [
+            {
+            id: 1,
+            reserv: false
+            },
+            {
+            id: 2,
+            reserv: false
+            },
+            {
+            id: 3,
+            reserv: false
+            },
+            {
+            id: 4,
+            reserv: false
+            },
+            {
+            id: 5,
+            reserv: false
+            },
+            {
+            id: 6,
+            reserv: false
+            },
+            ]
 
         return(
-            <div style={{marginLeft: '80px'}}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>          
-                    <KeyboardDatePicker style={{marginRight: '30px'}}
-                    margin="normal"
+            <div style={{overflowX: 'hidden'}}>
+            <div className='bgTennis'></div>
+            <p className='p-date'>Reservation</p>
+            <div style={{marginLeft: '100px', marginTop:'15px'}}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>         
+                    <KeyboardDatePicker         
                     id="date-picker-dialog"
-                    label="Date picker dialog"
+                    label="Select date"
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     onChange={handleDateChange}
@@ -64,42 +92,27 @@ class TennisReservation extends React.Component {
                         'aria-label': 'change date',
                     }}
                     />
-                    <KeyboardTimePicker
-                    margin="normal"
-                    marginLeft="40px"
-                    id="time-picker"
-                    label="Time picker"
-                    value={selectedDate}
-                    onChange={handleDateChange}
-                    KeyboardButtonProps={{
-                        'aria-label': 'change time',
-                    }}
-                    />
              </MuiPickersUtilsProvider>
             <div className="tennis">
-                <div id='count_'>Selected tables : 0</div>
+                <div id='count_' className='count'>Selected tables : 0</div>
                 <div className="row">
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>1</div>
+                {mesta.map(item => (
+                    <div key={item.id} 
+                    className='mesta' 
+                    style={{backgroundColor: item.reserv ? 'SlateGray' : 'silver'}}> 
+                    <div style={{marginTop: '13px'}}>{item.id}</div>
                     </div>
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>2</div>
-                    </div>
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>3</div>
-                    </div>
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>4</div>
-                    </div>
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>5</div>
-                    </div>
-                    <div className="mesta">
-                        <div style={{marginTop: '13px'}}>6</div>
-                    </div>
-                </div>
-            </div>
-         </div>    
+                ))}
+                </div>        
+            </div>           
+         </div> 
+         <div className='timeSelect'>
+            <TimeSelect />           
+         </div> 
+         <div className='user-data'>
+            <UserDataInputs /> 
+         </div> 
+         </div>   
         )
     }
 }

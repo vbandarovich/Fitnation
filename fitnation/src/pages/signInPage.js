@@ -31,7 +31,7 @@ class SignInPage extends React.Component {
         return(
                 <BrowserRouter>
                 <Navbar expanded={this.state.expanded}/>
-                <Sidenav updateState={this.updateState}/>
+                <Sidenav updateState={this.updateState} selected='profile/signIn'/>
                 <div className="mt-0 pt-0" style = {{height:"100vh", backgroundColor: "#26a69a", marginLeft: '64px'}}>
                 <MDBContainer>
                             <MDBRow className="text-white">

@@ -43,7 +43,35 @@ class Sidenav extends React.Component {
                     <NavText>
                         Home
                     </NavText>                        
-                </NavItem>          
+                </NavItem> 
+                <NavItem eventKey="profile">
+                    <NavIcon>
+                    <MDBIcon icon="user-circle" style={{ fontSize: '1.75em' }}/>
+                    </NavIcon>
+                    <NavText>
+                        Profile
+                    </NavText>
+                    <NavItem onClick={()=> window.location='/login'} eventKey="profile/signIn">
+                        <NavText>
+                            Sign In
+                        </NavText>
+                    </NavItem>
+                    <NavItem onClick={()=> window.location='/register'} eventKey="profile/signUp">
+                        <NavText>
+                            Sign Up
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="profile/myProfile">
+                        <NavText>
+                            My profile
+                        </NavText>
+                    </NavItem>
+                    <NavItem eventKey="profile/logout">
+                        <NavText>
+                            Logout
+                        </NavText>
+                    </NavItem>
+                </NavItem>         
                 <NavItem eventKey="reservation">
                     <NavIcon>
                     <MDBIcon far icon="calendar-alt" style={{ fontSize: '1.75em' }}/>
@@ -58,7 +86,7 @@ class Sidenav extends React.Component {
                     </NavItem>
                     <NavItem onClick={()=> window.location='/reservation/tennis'} eventKey="reservation/tennis">
                         <NavText>
-                            Tennis table
+                            Tennis tables
                         </NavText>
                     </NavItem>
                     <NavItem eventKey="reservation/bowling">
