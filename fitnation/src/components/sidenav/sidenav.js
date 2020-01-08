@@ -112,7 +112,7 @@ class Sidenav extends React.Component {
                             Gym
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="price-list/tennis">
+                    <NavItem onClick={()=> window.location='/price-list/tennis'} eventKey="price-list/tennis">
                         <NavText>
                             Tennis table
                         </NavText>

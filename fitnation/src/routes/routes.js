@@ -7,6 +7,7 @@ import SignUp from '../pages/signUpPage';
 import TennisReservPage from '../pages/tennisReservationPage';
 import BowlingReservPage from '../pages/bowlingReservationPage';
 import BilliardsReservPage from '../pages/billiardsReservationPage';
+import PriceListTennisPage from '../pages/priceListTennisPage';
 
 //const admin = (element) => element === 'admin';
 
@@ -19,6 +20,7 @@ const Routes = () => (
         <Route path='/reservation/tennis' component={TennisReservPage} />
         <Route path='/reservation/bowling' component={BowlingReservPage} /> 
         <Route path='/reservation/billiards' component={BilliardsReservPage} />
+        <Route path='/price-list/tennis' component={PriceListTennisPage} />
       </Switch>
     </main>
   )

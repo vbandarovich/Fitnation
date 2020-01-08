@@ -17,8 +17,8 @@
     cursor: pointer;
 }
 
-.bgBilliards { 
-    background-image: url("../assets/billiardsBg.jpg");
+.bgTennis { 
+    background-image: url("../../assets/tennisBg.jpg");
     height: 50vh;
     background-position: center;
     background-repeat: no-repeat;

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/billiardsReservation.css';
+import '../../styles/reservation/billiardsReservation.css';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import TimeSelect from './timeSelect';
