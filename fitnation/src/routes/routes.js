@@ -5,6 +5,8 @@ import App from '../App';
 import SignIn from '../pages/signInPage';
 import SignUp from '../pages/signUpPage';
 import TennisReservPage from '../pages/tennisReservationPage';
+import BowlingReservPage from '../pages/bowlingReservationPage';
+import BilliardsReservPage from '../pages/billiardsReservationPage';
 
 //const admin = (element) => element === 'admin';
 
@@ -14,7 +16,9 @@ const Routes = () => (
         <Route exact path='/' component={App}/>
         <Route path='/login' component={SignIn} />   
         <Route path='/register' component={SignUp} />  
-        <Route path='/reservation/tennis' component={TennisReservPage} />  
+        <Route path='/reservation/tennis' component={TennisReservPage} />
+        <Route path='/reservation/bowling' component={BowlingReservPage} /> 
+        <Route path='/reservation/billiards' component={BilliardsReservPage} />
       </Switch>
     </main>
   )

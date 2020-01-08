@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/tennisReservation.css';
+import '../../styles/billiardsReservation.css';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import TimeSelect from './timeSelect';
@@ -9,7 +9,7 @@ import {
 import { MDBBtn } from 'mdbreact';
 
 
-class TennisReservation extends React.Component {
+class BilliardsReservation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -70,15 +70,11 @@ class TennisReservation extends React.Component {
             id: 5,
             reserv: false
             },
-            {
-            id: 6,
-            reserv: false
-            },
             ]
 
         return(
             <div style={{overflowX: 'hidden', overflowY: 'hidden'}}>
-            <div className='bgTennis'></div>
+            <div className='bgBilliards'></div>
             <div className="card card-reserv">
                 <h3 className="card-header header-text">Reservation</h3>
                 <div className="card-body">
@@ -123,4 +119,4 @@ class TennisReservation extends React.Component {
     }
 }
 
-export default TennisReservation;
+export default BilliardsReservation;

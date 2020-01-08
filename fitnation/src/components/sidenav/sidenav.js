@@ -89,12 +89,12 @@ class Sidenav extends React.Component {
                             Tennis tables
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="reservation/bowling">
+                    <NavItem onClick={()=> window.location='/reservation/bowling'} eventKey="reservation/bowling">
                         <NavText>
                             Bowling
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="reservation/billiards">
+                    <NavItem onClick={()=> window.location='/reservation/billiards'} eventKey="reservation/billiards">
                         <NavText>
                             Billiards
                         </NavText>

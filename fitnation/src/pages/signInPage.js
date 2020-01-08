@@ -2,8 +2,7 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { MDBContainer, 
     MDBRow, 
-    MDBCol, 
-    MDBInput, 
+    MDBCol,
     MDBBtn,
     MDBAlert } from 'mdbreact';
 import Navbar from '../components/navbar/navbar';
@@ -38,29 +37,27 @@ class SignInPage extends React.Component {
                                 <MDBCol md="6" className="mx-auto" style={{marginTop:'10%'}}>
                                 <div>
                                     <p className="h5 text-center mb-4">Sign In</p>
-                                    <div className="grey-text">
-                                    <MDBInput className="text-white" id='loginInput'
-                                        label="Email"
-                                        labelClass="text-white"
-                                        icon="envelope"
-                                        size="sm"
-                                        group
+                                    <div className="text-white">
+                                    <label htmlFor="emailInput">
+                                        Your email
+                                    </label>
+                                    <input
                                         type="email"
-                                        validate
-                                        error="wrong"
-                                        success="right"
-                                        ref={ref => this.loginInput = ref}
+                                        id="emailInput"
+                                        className="form-control"
+                                        ref={ ref => this.emailInput = ref}
                                     />
-                                    <MDBInput className={'text-white' + (error ? ' is-invalid' : '')} id="passwordInput" name="password"
-                                        label="Password"
-                                        labelClass="text-white"
-                                        icon="lock"
-                                        size="sm"
-                                        group
+                                    <br />
+                                    <label htmlFor="passwordInput">
+                                         Your password
+                                    </label>
+                                    <input
+                                        className={'form-control' + (error ? ' is-invalid' : '')}
                                         type="password"
-                                        required
+                                        id="passwordInput"
                                         ref={ ref => this.passwordInput = ref}
                                     />
+                                    <br />
                                     </div>
                                     <MDBAlert  color='danger' className={error ? '' : ' sr-only'} dismiss>Check the correctness of the entered data</MDBAlert>
                                     <div className="text-center">

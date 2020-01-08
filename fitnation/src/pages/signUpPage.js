@@ -2,12 +2,13 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { MDBContainer, 
     MDBRow, 
-    MDBCol, 
-    MDBInput, 
+    MDBCol,
     MDBBtn,
     MDBAlert } from 'mdbreact';
 import Navbar from '../components/navbar/navbar';
-import Sidenav from '../components/sidenav/sidenav';    
+import Sidenav from '../components/sidenav/sidenav'; 
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/bootstrap.css';   
 
 class SignUpPage extends React.Component {
 
@@ -38,57 +39,59 @@ class SignUpPage extends React.Component {
                         <MDBCol md="6" className="mx-auto" style={{marginTop:'10%'}}>
                         <div>
                             <p className="h5 text-center mb-4">Sign Up</p>
-                            <div className="grey-text">
-                            <MDBInput className="text-white" id='userNameInput'
-                                label="Username"
-                                labelClass="text-white"
-                                icon="user"
-                                size="sm"
-                                group
+                            <div className="text-white">
+                            <label htmlFor="userNameInput">
+                                Your user name
+                            </label>
+                            <input
                                 type="text"
-                                validate
-                                error="wrong"
-                                success="right"
-                                ref={ref => this.userNameInput = ref}
+                                id="userNameInput"
+                                className="form-control"
+                                ref={ ref => this.userNameInput = ref}
                             />
-                            <MDBInput className="text-white" id='emailInput'
-                                label="Email"
-                                labelClass="text-white"
-                                icon="envelope"
-                                size="sm"
-                                group
+                            <br />
+                            <label htmlFor="emailInput">
+                                Your email
+                            </label>
+                            <input
                                 type="email"
-                                validate
-                                error="wrong"
-                                success="right"
-                                ref={ref => this.emailInput = ref}
+                                id="emailInput"
+                                className="form-control"
+                                ref={ ref => this.emailInput = ref}
                             />
-                            <MDBInput className="text-white" id='passwordInput'
-                                label="Password"
-                                labelClass="text-white"
-                                icon="lock"
-                                size="sm"
-                                group
+                            <br />
+                            <PhoneInput
+                                id="phoneInput"
+                                country={'us'}
+                                value={this.state.phone}
+                                onChange={phone => this.setState({ phone })}
+                                ref={ ref => this.phoneInput = ref}
+                            />
+                            <br />
+                            <label htmlFor="passwordInput">
+                                Your password
+                            </label>
+                            <input
                                 type="password"
-                                validate
-                                ref={ref => this.passwordInput = ref}
+                                id="passwordInput"
+                                className="form-control"
+                                ref={ ref => this.passwordInput = ref}
                             />
-                            <MDBInput className="text-white" id='confirmPasswordInput'
-                                label="Confirm password"
-                                labelClass="text-white"
-                                icon="exclamation-triangle"
-                                size="sm"
-                                group
+                            <br />
+                            <label htmlFor="confirmPasswordInput">
+                                Confirm password
+                            </label>
+                            <input
                                 type="password"
-                                validate
-                                error="wrong"
-                                success="right"
-                                ref={ref => this.confirmPasswordInput = ref}
+                                id="confirmPasswordInput"
+                                className="form-control"
+                                ref={ ref => this.confirmPasswordInput = ref}
                             />
+                            <br />
                             </div>
                             <MDBAlert  color='danger' className={error ? '' : ' sr-only'} dismiss>Check the correctness of the entered data</MDBAlert>
                             <div className="text-center">
-                            <MDBBtn className="teal darken-2" type='submit'>Sign Up</MDBBtn>
+                            <MDBBtn className="teal darken-2">Sign Up</MDBBtn>
                             </div>
                         </div>
                         </MDBCol>

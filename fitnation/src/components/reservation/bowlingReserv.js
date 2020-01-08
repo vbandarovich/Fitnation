@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/tennisReservation.css';
+import '../../styles/bowlingReservation.css';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import TimeSelect from './timeSelect';
@@ -9,7 +9,7 @@ import {
 import { MDBBtn } from 'mdbreact';
 
 
-class TennisReservation extends React.Component {
+class BowlingReservation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,10 +35,10 @@ class TennisReservation extends React.Component {
             l[i].onclick = function(){
                 if(this.style.background === 'red') {
                     this.style.background='silver';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
+                    document.getElementById('count_').innerHTML = 'Selected boyling alleys : '+ Count_Mest ();
                 } else if(this.style.background !== 'SlateGray'){
                     this.style.background='red';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
+                    document.getElementById('count_').innerHTML = 'Selected boyling alleys : '+ Count_Mest ();
                 } 
             }
         }
@@ -70,15 +70,11 @@ class TennisReservation extends React.Component {
             id: 5,
             reserv: false
             },
-            {
-            id: 6,
-            reserv: false
-            },
             ]
 
         return(
             <div style={{overflowX: 'hidden', overflowY: 'hidden'}}>
-            <div className='bgTennis'></div>
+            <div className='bgBowling'></div>
             <div className="card card-reserv">
                 <h3 className="card-header header-text">Reservation</h3>
                 <div className="card-body">
@@ -103,7 +99,7 @@ class TennisReservation extends React.Component {
                             </div>                                
                         </div>                     
                         <div className="tennis">
-                            <div id='count_' className='count'>Selected tables : 0</div>
+                            <div id='count_' className='count'>Selected boyling alleys : 0</div>
                             <div className="row">
                                 {mesta.map(item => (
                                     <div key={item.id} 
@@ -123,4 +119,4 @@ class TennisReservation extends React.Component {
     }
 }
 
-export default TennisReservation;
+export default BowlingReservation;

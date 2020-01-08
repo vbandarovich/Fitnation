@@ -1,8 +1,6 @@
 import React from 'react';
 import { Multiselect } from 'multiselect-react-dropdown';
 
-
-
 class TimeSelect extends React.Component {
 
   render() {
@@ -20,32 +18,11 @@ class TimeSelect extends React.Component {
     ];
 
     return(
-      <div className='row'>
-        <div className='col-10 col-sm-5 col-md-3'>
-          <p className='p-time'>Select time for table 1</p>
-          <Multiselect
-            options={time}
-            displayValue='value'
-            placeholder="Select time range"
-          />
-        </div>
-        <div className='col-10 col-sm-5 col-md-3'>
-          <p className='p-time'>Select time for table 2</p>
-          <Multiselect
-            options={time}
-            displayValue='value'
-            placeholder="Select time range"
-          />
-        </div>
-        <div className='col-10 col-sm-5 col-md-3'>
-          <p className='p-time'>Select time for table 3</p>
-          <Multiselect
-            options={time}
-            displayValue='value'
-            placeholder="Select time range"
-          />
-        </div>
-      </div>   
+        <Multiselect
+          options={time}
+          displayValue='value'
+          placeholder="Select time range"
+        />
     )
   }
 }

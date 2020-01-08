@@ -16,8 +16,7 @@ class HomePage extends React.Component {
                             <div className="card-img-overlay d-flex flex-column justify-content-between">
                                 <h4 className="card-title teko">Gym</h4>
                                 <p className="card-text solway">We love sports, it makes us stronger, more confident, calmer. We love sports people and want to have more, 
-                                    beautiful, attractive. We believe that sport is accessible to everyone. Therefore, we created a fitness club in which there is nothing 
-                                    superfluous, for which we have to pay extra. </p>
+                                    beautiful, attractive. We believe that sport is accessible to everyone.</p>
                             </div>
                             </div>
                             </a>
