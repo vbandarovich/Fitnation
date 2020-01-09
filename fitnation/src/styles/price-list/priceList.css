@@ -1,6 +1,14 @@
 
 .price-list {
-    margin-left: 70px;
+    margin-left: 64px;
+}
+
+.bgPrice-list { 
+    background-image: url("../../assets/bgTennisPrice.jpeg");
+    height: 55vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
 }
 
 .button-background {

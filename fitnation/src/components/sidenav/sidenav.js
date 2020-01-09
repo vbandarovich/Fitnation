@@ -128,7 +128,7 @@ class Sidenav extends React.Component {
                         </NavText>
                     </NavItem>
                 </NavItem>
-                <NavItem eventKey="gallery">
+                <NavItem onClick={()=> window.location='/gallery'} eventKey="gallery">
                     <NavIcon>
                     <MDBIcon far icon="image" style={{ fontSize: '1.75em' }}/>
                     </NavIcon>

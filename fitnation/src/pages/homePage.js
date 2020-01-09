@@ -6,8 +6,8 @@ class HomePage extends React.Component {
     render() {
         return(
             <div>         
-                <div className='bgHome'></div>
-                    <div className="pt-3" style={{marginLeft: '70px'}}>
+                <div className='bgHome'><div className='text-bg'>Fitnation</div></div>
+                <div className="pt-3" style={{marginLeft: '70px'}}>
                     <div className="row">
                         <div className="col-12 col-md-6 col-xl-3">
                             <a href="#!">
@@ -34,7 +34,7 @@ class HomePage extends React.Component {
                             </a>
                         </div>
                         <div className="col-12 col-md-6 col-xl-3">
-                            <a href="#!">
+                            <a href="/reservation/bowling">
                             <div className="card mb-3">
                             <div className="card-img img-bowling" ></div>    
                             <div className="card-img-overlay d-flex flex-column justify-content-between">
@@ -46,7 +46,7 @@ class HomePage extends React.Component {
                             </a>
                         </div>
                         <div className="col-12 col-md-6 col-xl-3">
-                            <a href="#!">
+                            <a href="/reservation/billiards">
                             <div className="card mb-3">
                             <div className="card-img img-billiards" ></div>    
                             <div className="card-img-overlay d-flex flex-column justify-content-between">

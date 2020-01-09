@@ -60,7 +60,7 @@ class SignUpPage extends React.Component {
                                 ref={ ref => this.emailInput = ref}
                             />
                             <br />
-                            <PhoneInput
+                            <PhoneInput style={{color: 'black'}}
                                 id="phoneInput"
                                 country={'us'}
                                 value={this.state.phone}

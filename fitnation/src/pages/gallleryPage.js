@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Sidenav from '../components/sidenav/sidenav';
 import Navbar from '../components/navbar/navbar';
-import PriceListTennis from '../components/price-list/priceListTennis';
+import CarouselComponent from '../components/gallery/carousel';
 
-class PriceListTennisPage extends React.Component {
+class GalleryPage extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -23,11 +23,11 @@ class PriceListTennisPage extends React.Component {
         return(
             <BrowserRouter>
                 <Navbar expanded={this.state.expanded}/>
-                <Sidenav updateState={this.updateState} selected='price-list/tennis'/>   
-                <PriceListTennis />    
+                <Sidenav updateState={this.updateState} selected='gallery'/>   
+                <CarouselComponent />
             </BrowserRouter>
         )
     }
 }
 
-export default PriceListTennisPage;
+export default GalleryPage;

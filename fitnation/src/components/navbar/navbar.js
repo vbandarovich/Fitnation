@@ -35,7 +35,7 @@ class Navbar extends React.Component {
             return(
                 <MDBNavbar color='default-color-dark' dark expand="md">
                         <MDBNavbarBrand style={{marginLeft: '260px'}}>
-                        <strong className="white-text">Fitnation</strong>
+                        <strong className="white-text"><MDBIcon icon="hiking" /> Fitnation</strong>
                         </MDBNavbarBrand>
                         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav right>
@@ -74,7 +74,7 @@ class Navbar extends React.Component {
             return(
                 <MDBNavbar color='default-color-dark' dark expand="md">
                         <MDBNavbarBrand style={{marginLeft: '70px'}}>
-                        <strong className="white-text">Fitnation</strong>
+                        <strong className="white-text"><MDBIcon icon="hiking" /> Fitnation</strong>
                         </MDBNavbarBrand>
                         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav right>

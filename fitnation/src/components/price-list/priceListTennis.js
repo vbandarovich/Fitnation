@@ -7,6 +7,7 @@ class PriceListTennis extends React.Component {
     render() {
         return(
             <div className='price-list'>
+                <div className='bgPrice-list'></div>
                 <PricingTable  highlightColor='#2BBBAD'>
                     <PricingSlot highlighted onClick={()=> window.location='/reservation/tennis'} buttonText='RESERVE' title='BASIC' priceText='$5/hour/table'>
                         <PricingDetail> 1 table </PricingDetail>

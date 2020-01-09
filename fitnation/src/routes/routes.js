@@ -8,6 +8,7 @@ import TennisReservPage from '../pages/tennisReservationPage';
 import BowlingReservPage from '../pages/bowlingReservationPage';
 import BilliardsReservPage from '../pages/billiardsReservationPage';
 import PriceListTennisPage from '../pages/priceListTennisPage';
+import GalleryPage from '../pages/gallleryPage';
 
 //const admin = (element) => element === 'admin';
 
@@ -21,6 +22,7 @@ const Routes = () => (
         <Route path='/reservation/bowling' component={BowlingReservPage} /> 
         <Route path='/reservation/billiards' component={BilliardsReservPage} />
         <Route path='/price-list/tennis' component={PriceListTennisPage} />
+        <Route path='/gallery' component={GalleryPage} />
       </Switch>
     </main>
   )
