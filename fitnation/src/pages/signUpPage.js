@@ -38,7 +38,7 @@ class SignUpPage extends React.Component {
                     <MDBRow className="text-white">
                         <MDBCol md="6" className="mx-auto" style={{marginTop:'10%'}}>
                         <div>
-                            <p className="h5 text-center mb-4">Sign Up</p>
+                            <p className="h2 text-center mb-4">Sign Up</p>
                             <div className="text-white">
                             <label htmlFor="userNameInput">
                                 Your user name

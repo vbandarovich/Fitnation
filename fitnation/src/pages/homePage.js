@@ -10,7 +10,7 @@ class HomePage extends React.Component {
                 <div className="pt-3" style={{marginLeft: '70px'}}>
                     <div className="row">
                         <div className="col-12 col-md-6 col-xl-3">
-                            <a href="#!">
+                            <a href="/reservation/gym">
                             <div className="card mb-3">
                             <div className="card-img img-gym"></div>    
                             <div className="card-img-overlay d-flex flex-column justify-content-between">
