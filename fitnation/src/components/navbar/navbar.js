@@ -28,7 +28,8 @@ class Navbar extends React.Component {
             })
         }
     }
-     render() {
+
+    render() {
          const { expanded } = this.state;
 
          if(expanded) {
@@ -44,7 +45,7 @@ class Navbar extends React.Component {
                                 <MDBDropdownToggle nav caret>
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
-                                <MDBDropdownMenu basic left>
+                                <MDBDropdownMenu basic left='true'>
                                 <a href="/login"><MDBDropdownItem>Sign In</MDBDropdownItem></a>
                                 <a href="/register"><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
                                 </MDBDropdownMenu>
@@ -107,7 +108,7 @@ class Navbar extends React.Component {
                           
                         </MDBNavbarNav>
                         </MDBCollapse>
-                    </MDBNavbar>
+                </MDBNavbar>
              )
          }
          

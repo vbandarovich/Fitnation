@@ -35,7 +35,7 @@ class Sidenav extends React.Component {
                 }}
             >
             <SideNav.Toggle />
-            <SideNav.Nav defaultSelected={this.state.selected}>           
+            <SideNav.Nav defaultSelected={this.state.selected} style={{color:'red'}}>           
                 <NavItem onClick={()=> window.location='/'} eventKey="home">                  
                     <NavIcon>
                         <MDBIcon icon="home" style={{ fontSize: '1.75em' }}/>
@@ -61,7 +61,7 @@ class Sidenav extends React.Component {
                             Sign Up
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="profile/myProfile">
+                    <NavItem className='disabled' eventKey="profile/myProfile">
                         <NavText>
                             My profile
                         </NavText>
@@ -79,7 +79,7 @@ class Sidenav extends React.Component {
                     <NavText>
                         Reservation
                     </NavText>
-                    <NavItem eventKey="reservation/gym">
+                    <NavItem onClick={()=> window.location='/reservation/gym'} eventKey="reservation/gym">
                         <NavText>
                             Gym
                         </NavText>
@@ -107,7 +107,7 @@ class Sidenav extends React.Component {
                     <NavText>
                         Price-list
                     </NavText>
-                    <NavItem eventKey="price-list/gym">
+                    <NavItem onClick={()=> window.location='/price-list/gym'} eventKey="price-list/gym">
                         <NavText>
                             Gym
                         </NavText>
