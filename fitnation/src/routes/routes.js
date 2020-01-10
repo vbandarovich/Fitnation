@@ -8,6 +8,10 @@ import TennisReservPage from '../pages/tennisReservationPage';
 import BowlingReservPage from '../pages/bowlingReservationPage';
 import BilliardsReservPage from '../pages/billiardsReservationPage';
 import PriceListTennisPage from '../pages/priceListTennisPage';
+import PriceListBowlingPage from '../pages/priceListBowlingPage';
+import PriceListBilliardsPage from '../pages/priceListBilliardsPage';
+import ContactPage from '../pages/contactPage';
+
 import GalleryPage from '../pages/gallleryPage';
 
 //const admin = (element) => element === 'admin';
@@ -22,6 +26,9 @@ const Routes = () => (
         <Route path='/reservation/bowling' component={BowlingReservPage} /> 
         <Route path='/reservation/billiards' component={BilliardsReservPage} />
         <Route path='/price-list/tennis' component={PriceListTennisPage} />
+        <Route path='/price-list/bowling' component={PriceListBowlingPage} />
+        <Route path='/price-list/billiards' component={PriceListBilliardsPage} />
+        <Route path='/contact' component={ContactPage} />
         <Route path='/gallery' component={GalleryPage} />
       </Switch>
     </main>

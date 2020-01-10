@@ -3,8 +3,24 @@
     margin-left: 64px;
 }
 
-.bgPrice-list { 
+.bgTennisPrice-list { 
     background-image: url("../../assets/bgTennisPrice.jpeg");
+    height: 55vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+.bgBowlingPrice-list { 
+    background-image: url("../../assets/bgBowlingPrice.jpeg");
+    height: 55vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;    
+}
+
+.bgBilliardsPrice-list { 
+    background-image: url("../../assets/bgBilliardsPrice.jpg");
     height: 55vh;
     background-position: center;
     background-repeat: no-repeat;

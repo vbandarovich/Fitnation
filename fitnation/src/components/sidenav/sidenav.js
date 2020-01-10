@@ -117,12 +117,12 @@ class Sidenav extends React.Component {
                             Tennis table
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="price-list/bowling">
+                    <NavItem onClick={()=> window.location='/price-list/bowling'} eventKey="price-list/bowling">
                         <NavText>
                             Bowling
                         </NavText>
                     </NavItem>
-                    <NavItem eventKey="price-list/billiards">
+                    <NavItem onClick={()=> window.location='/price-list/billiards'} eventKey="price-list/billiards">
                         <NavText>
                             Billiards
                         </NavText>
@@ -136,7 +136,7 @@ class Sidenav extends React.Component {
                         Gallery
                     </NavText>
                 </NavItem>
-                <NavItem eventKey="contact">
+                <NavItem onClick={()=> window.location='/contact'} eventKey="contact">
                     <NavIcon>
                     <MDBIcon icon="phone-alt" style={{ fontSize: '1.75em' }}/>
                     </NavIcon>
