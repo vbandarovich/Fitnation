@@ -1,12 +1,13 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import { MDBContainer, 
     MDBRow, 
     MDBCol,
     MDBBtn,
     MDBAlert } from 'mdbreact';
 import Navbar from '../components/navbar/navbar';
-import Sidenav from '../components/sidenav/sidenav'; 
+import Sidenav from '../components/sidenav/sidenav';
+import { authenticationService } from '../services/authenticationService'; 
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/bootstrap.css';   
 
@@ -16,9 +17,11 @@ class SignUpPage extends React.Component {
         super(props);
         this.state = {
             expanded: false,
+            redirect: false,
             error: false
           }
         this.updateState = this.updateState.bind(this);
+        this.OnSubmit = this.OnSubmit.bind(this);
     }
 
     updateState = (value) => {
@@ -27,9 +30,50 @@ class SignUpPage extends React.Component {
         })
     }
 
+    OnSubmit = () => {
+        let userName = this.userNameInput.value;
+        let email = this.emailInput.value;
+        let phone = this.phoneInput.props.value;
+        let password = this.passwordInput.value;
+        let confirmPassword = this.confirmPasswordInput.value;
+
+        if(password === confirmPassword) {   
+            try {
+                authenticationService.register(userName, email, phone, password)
+                .then( 
+                    (user) => {
+                        if(user !== null) {
+                            this.setState({
+                                redirect: true
+                            })
+                        } else {
+                            this.setState({
+                                error: true
+                            })
+                        }
+                    }
+                );
+            }
+            catch(ex) {
+                this.setState({
+                    error: true
+                })
+            }
+                
+        } else {
+            this.setState({
+                error: true
+            })
+        }
+    }
+
     render() {
-        const{ error } = this.state;
-        return(
+        const{ error, redirect } = this.state;
+
+        if(redirect) {
+            return <Redirect to="/" />;
+        } else {
+            return(
                 <BrowserRouter>
                 <Navbar expanded={this.state.expanded} />
                 <Sidenav updateState={this.updateState} selected='profile/signUp'/>
@@ -91,7 +135,7 @@ class SignUpPage extends React.Component {
                             </div>
                             <MDBAlert  color='danger' className={error ? '' : ' sr-only'} dismiss>Check the correctness of the entered data</MDBAlert>
                             <div className="text-center">
-                            <MDBBtn className="teal darken-2">Sign Up</MDBBtn>
+                            <MDBBtn onClick={()=> this.OnSubmit()} className="teal darken-2">Sign Up</MDBBtn>
                             </div>
                         </div>
                         </MDBCol>
@@ -99,7 +143,9 @@ class SignUpPage extends React.Component {
                 </MDBContainer>
                 </div>
                 </BrowserRouter>     
-        )
+            )
+        }
+        
     }
 }
 

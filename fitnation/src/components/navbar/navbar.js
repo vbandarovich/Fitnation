@@ -10,6 +10,7 @@ import { MDBNavbar,
     MDBDropdownMenu, 
     MDBDropdownItem, 
     MDBIcon } from "mdbreact";  
+import { authenticationService } from '../../services/authenticationService';
 
 class Navbar extends React.Component {
 
@@ -17,21 +18,31 @@ class Navbar extends React.Component {
         super(props);
         this.state = {
             isOpen: false,
-            expanded: props.expanded
+            expanded: props.expanded,
+            currentUser: authenticationService.currentUserValue
         }
+        this.logout = this.logout.bind(this);
     }
 
     componentDidUpdate(prevProps) {
         if(this.props !== prevProps) {
             this.setState({
-                expanded: this.props.expanded
+                expanded: this.props.expanded,
+                currentUser: authenticationService.currentUserValue
             })
         }
     }
+    
+    logout() {
+        authenticationService.logout();
+        this.props.updateAuth(authenticationService.currentUserValue);
+        this.setState({
+            currentUser: authenticationService.currentUserValue
+        })
+    }
 
     render() {
-         const { expanded } = this.state;
-
+         const { expanded, currentUser } = this.state;
          if(expanded) {
             return(
                 <MDBNavbar color='default-color-dark' dark expand="md">
@@ -46,8 +57,10 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left='true'>
-                                <a href="/login"><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                <a href="/register"><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
                         </MDBNavItem>
@@ -84,9 +97,11 @@ class Navbar extends React.Component {
                                 <MDBDropdownToggle nav caret>
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
-                                <MDBDropdownMenu basic>
-                                <a href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                <a href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
+                                <MDBDropdownMenu basic left='true'>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
                         </MDBNavItem>

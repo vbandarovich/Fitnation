@@ -1,12 +1,13 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Redirect } from 'react-router-dom';
 import { MDBContainer, 
     MDBRow, 
     MDBCol,
     MDBBtn,
     MDBAlert } from 'mdbreact';
 import Navbar from '../components/navbar/navbar';
-import Sidenav from '../components/sidenav/sidenav';    
+import Sidenav from '../components/sidenav/sidenav';   
+import { authenticationService } from '../services/authenticationService';
 
 class SignInPage extends React.Component {
 
@@ -14,9 +15,11 @@ class SignInPage extends React.Component {
         super(props);
         this.state = {
             expanded: false,
-            error: false
+            error: false,
+            redirect: false
           }
         this.updateState = this.updateState.bind(this);
+        this.OnSubmit = this.OnSubmit.bind(this);
     }
 
     updateState = (value) => {
@@ -25,9 +28,45 @@ class SignInPage extends React.Component {
         })
     }
 
+    OnSubmit = () => {
+        let email = this.emailInput.value;
+        let password = this.passwordInput.value;
+        if(email !== null && password !== null) {   
+            try {
+                authenticationService.login(email, password)
+                .then( 
+                    (user) => {
+                        if(user !== null) {
+                            this.setState({
+                                redirect: true
+                            })
+                        } else {
+                            this.setState({
+                                error: true
+                            })
+                        }
+                    }
+                );
+            }
+            catch(ex) {
+                this.setState({
+                    error: true
+                })
+            } 
+        } else {
+            this.setState({
+                error: true
+            })
+        }
+    }
+
     render() {
-        const{ error } = this.state;
-        return(
+        const{ error, redirect } = this.state;
+
+        if(redirect) {
+            return <Redirect to="/" />;
+        } else {
+            return(
                 <BrowserRouter>
                 <Navbar expanded={this.state.expanded}/>
                 <Sidenav updateState={this.updateState} selected='profile/signIn'/>
@@ -61,7 +100,7 @@ class SignInPage extends React.Component {
                                     </div>
                                     <MDBAlert  color='danger' className={error ? '' : ' sr-only'} dismiss>Check the correctness of the entered data</MDBAlert>
                                     <div className="text-center">
-                                    <MDBBtn className="teal darken-2" >Sign In</MDBBtn>
+                                    <MDBBtn onClick={()=> this.OnSubmit()} className="teal darken-2" >Sign In</MDBBtn>
                                     </div>
                                 </div>
                                 </MDBCol>
@@ -69,7 +108,9 @@ class SignInPage extends React.Component {
                         </MDBContainer>       
                 </div> 
                 </BrowserRouter>     
-        )
+            )
+        }
+       
     }
 }
 
