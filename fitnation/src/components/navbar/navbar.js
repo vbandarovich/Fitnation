@@ -57,9 +57,15 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left='true'>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign In</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign Up</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>My profile</MDBDropdownItem>
+                                    </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
@@ -98,9 +104,15 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left='true'>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign In</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign Up</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>My profile</MDBDropdownItem>
+                                    </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
