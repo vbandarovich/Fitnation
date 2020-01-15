@@ -43,6 +43,7 @@ class Navbar extends React.Component {
 
     render() {
          const { expanded, currentUser } = this.state;
+
          if(expanded) {
             return(
                 <MDBNavbar color='default-color-dark' dark expand="md">
@@ -116,7 +117,7 @@ class Navbar extends React.Component {
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
-                        </MDBNavItem>
+                        </MDBNavItem>                                             
                         <MDBNavItem>
                             <MDBNavLink className="waves-effect waves-light" to="#!">
                             <MDBIcon fab icon="vk" />
@@ -129,10 +130,11 @@ class Navbar extends React.Component {
                         </MDBNavItem>
                         <MDBNavItem>
                             <MDBNavLink className="waves-effect waves-light" to="#!">
-                                <MDBIcon fab icon="telegram" />
+                            <MDBIcon fab icon="telegram" />
                             </MDBNavLink>
                         </MDBNavItem>
-                          
+                        <MDBNavItem>
+                        </MDBNavItem>
                         </MDBNavbarNav>
                         </MDBCollapse>
                 </MDBNavbar>

@@ -110,7 +110,6 @@ class SignInPage extends React.Component {
                 </BrowserRouter>     
             )
         }
-       
     }
 }
 
