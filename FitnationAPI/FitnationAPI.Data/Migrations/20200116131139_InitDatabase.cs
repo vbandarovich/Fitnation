@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FitnationAPI.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class InitDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,56 @@ namespace FitnationAPI.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ObjectTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ObjectTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PriceList",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ObjectTypeId = table.Column<Guid>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PriceList", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReservationObjects",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ObjectTypeId = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReservationObjects", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TimeRange",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Time = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeRange", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +202,28 @@ namespace FitnationAPI.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Reservations",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    UserId = table.Column<string>(nullable: true),
+                    DateReservation = table.Column<DateTime>(nullable: false),
+                    ReservationTimeId = table.Column<Guid>(nullable: true),
+                    ReservationObjectId = table.Column<Guid>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Reservations_TimeRange_ReservationTimeId",
+                        column: x => x.ReservationTimeId,
+                        principalTable: "TimeRange",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +262,11 @@ namespace FitnationAPI.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Reservations_ReservationTimeId",
+                table: "Reservations",
+                column: "ReservationTimeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,10 +287,25 @@ namespace FitnationAPI.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ObjectTypes");
+
+            migrationBuilder.DropTable(
+                name: "PriceList");
+
+            migrationBuilder.DropTable(
+                name: "ReservationObjects");
+
+            migrationBuilder.DropTable(
+                name: "Reservations");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "TimeRange");
         }
     }
 }

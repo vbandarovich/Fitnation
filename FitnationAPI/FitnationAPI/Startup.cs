@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Core;
 using FitnationAPI.Data;
 using FitnationAPI.Helpers;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -41,6 +42,11 @@ namespace FitnationAPI
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //===== Add MediatR =====
+            var assembly = AppDomain.CurrentDomain.Load("FitnationAPI");
+            services.AddMediatR(assembly);
+            services.AddTransient<IMediator, Mediator>();
 
             //===== Add AuthHelper =====
             services.AddTransient<IAuthHelper, AuthHelper>();

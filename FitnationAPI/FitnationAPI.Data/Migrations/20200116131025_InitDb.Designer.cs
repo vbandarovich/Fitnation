@@ -4,14 +4,16 @@ using FitnationAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitnationAPI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200116131025_InitDb")]
+    partial class InitDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,13 +67,15 @@ namespace FitnationAPI.Data.Migrations
                     b.Property<Guid>("ReservationObjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ReservationTimeId")
+                    b.Property<Guid?>("ReservationTimeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReservationTimeId");
 
                     b.ToTable("Reservations");
                 });
@@ -301,6 +305,13 @@ namespace FitnationAPI.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("FitnationAPI.Data.Reservation", b =>
+                {
+                    b.HasOne("FitnationAPI.Data.TimeRange", "ReservationTime")
+                        .WithMany()
+                        .HasForeignKey("ReservationTimeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

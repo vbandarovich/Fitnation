@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FitnationAPI.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200115102556_AddNewTablesReserv")]
-    partial class AddNewTablesReserv
+    [Migration("20200116131139_InitDatabase")]
+    partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,7 +58,7 @@ namespace FitnationAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime>("DateReservation")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
@@ -67,13 +67,15 @@ namespace FitnationAPI.Data.Migrations
                     b.Property<Guid>("ReservationObjectId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid>("UserId")
+                    b.Property<Guid?>("ReservationTimeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ReservationTimeId");
 
                     b.ToTable("Reservations");
                 });
@@ -101,15 +103,10 @@ namespace FitnationAPI.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ReservationId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReservationId");
 
                     b.ToTable("TimeRange");
                 });
@@ -310,11 +307,11 @@ namespace FitnationAPI.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FitnationAPI.Data.TimeRange", b =>
+            modelBuilder.Entity("FitnationAPI.Data.Reservation", b =>
                 {
-                    b.HasOne("FitnationAPI.Data.Reservation", null)
-                        .WithMany("ReservationTime")
-                        .HasForeignKey("ReservationId");
+                    b.HasOne("FitnationAPI.Data.TimeRange", "ReservationTime")
+                        .WithMany()
+                        .HasForeignKey("ReservationTimeId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

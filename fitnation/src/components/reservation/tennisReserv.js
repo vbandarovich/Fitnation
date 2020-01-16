@@ -49,29 +49,35 @@ class TennisReservation extends React.Component {
             })
         };
 
-        const mesta = [
+        const tables = [
             {
             id: 1,
+            name: 'Table 1',
             reserv: false
             },
             {
             id: 2,
+            name: 'Table 2',
             reserv: false
             },
             {
             id: 3,
+            name: 'Table 3',
             reserv: false
             },
             {
             id: 4,
+            name: 'Table 4',
             reserv: false
             },
             {
             id: 5,
+            name: 'Table 5',
             reserv: false
             },
             {
             id: 6,
+            name: 'Table 6',
             reserv: false
             },
             ]
@@ -105,11 +111,11 @@ class TennisReservation extends React.Component {
                         <div className="tennis">
                             <div id='count_' className='count'>Selected tables : 0</div>
                             <div className="row">
-                                {mesta.map(item => (
+                                {tables.map(item => (
                                     <div key={item.id} 
                                     className='mesta' 
                                     style={{backgroundColor: item.reserv ? 'SlateGray' : 'silver'}}> 
-                                    <div style={{marginTop: '13px'}}>{item.id}</div>
+                                    <div style={{marginTop: '13px'}}>{item.name}</div>
                                     </div>
                                 ))}
                             </div>        
