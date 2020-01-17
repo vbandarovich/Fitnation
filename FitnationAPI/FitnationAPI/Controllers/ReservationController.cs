@@ -4,10 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using FitnationAPI.CQS.Commands.CommandEntities;
 using FitnationAPI.CQS.Queries.QueryEntities;
-using FitnationAPI.Data;
+using FitnationAPI.Helpers;
 using FitnationAPI.Models;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -34,22 +33,16 @@ namespace FitnationAPI.Controllers
             {
                 try
                 {
+                    var reservationHelper = new ReservationHelper( _mediator);
+
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var typeId = await _mediator.Send(new GetTypeIdByNameQuery(model.Type));
                     var price = await _mediator.Send(new GetPriceByTypeIdQuery(typeId));
 
                     var splitTime = model.TimeRange.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                    var timeEntities = new List<TimeRange>();
-                    foreach (var time in splitTime)
-                    {
-                        timeEntities.Add(await _mediator.Send(new GetTimeEntityByTimeQuery(time)));
-                    }
+                    var timeEntities = await reservationHelper.GetTimeEntities(splitTime);
 
-                    var objectsId = new List<Guid>();
-                    foreach (var objName in model.ObjectNames)
-                    {
-                        objectsId.Add(await _mediator.Send(new GetObjectIdByTypeAndNameQuery(typeId, objName)));
-                    }
+                    var objectsId = await reservationHelper.GetObjectsId(model.ObjectNames, typeId);
 
                     foreach (var obj in objectsId)
                     {
@@ -58,6 +51,9 @@ namespace FitnationAPI.Controllers
                             await _mediator.Send(new ReservationCommand(user.Id, model.DateReservation, time.Id, obj, price));
                         }
                     }
+
+                    Log.Information($"Reservation was succeded");
+                    return Ok();
                 }
                 catch (Exception ex)
                 {

@@ -9,7 +9,6 @@ import {
 import { MDBBtn, MDBAlert } from 'mdbreact';
 import { authenticationService } from '../../services/authenticationService';
 import { handleResponse } from '../../helpers/handleResponce';
-import { Redirect } from 'react-router-dom';
 
 
 class BowlingReservation extends React.Component {
@@ -18,7 +17,6 @@ class BowlingReservation extends React.Component {
         this.state = {
             selectedDate: null,
             error: false,
-            redirect: false,
             currentUser: authenticationService.currentUserValue
         }
         this.onSubmit = this.onSubmit.bind(this);
@@ -51,9 +49,7 @@ class BowlingReservation extends React.Component {
                 .then(handleResponse)
                 .then(
                     (result) => {
-                        this.setState({
-                            redirect: true
-                        })
+                        window.location='/';
                     }     
                 )
         }
@@ -65,7 +61,7 @@ class BowlingReservation extends React.Component {
     }
 
     render() {
-        const { selectedDate, error, redirect } = this.state;
+        const { selectedDate, error } = this.state;
         var l = document.getElementsByClassName('mesta'); 
 
         function Count_Mest (){
@@ -129,12 +125,7 @@ class BowlingReservation extends React.Component {
             },
             ]
 
-            if(redirect) {
-                return(
-                    <Redirect to='/' />
-                )          
-            } else {
-                return(
+            return(
                     <div style={{overflowX: 'hidden', overflowY: 'hidden'}}>
                     <div className='bgBowling'></div>
                     <div className="card card-reserv">
@@ -181,8 +172,6 @@ class BowlingReservation extends React.Component {
                 </div>   
                 )
             }
-            
-    }
 }
 
 export default BowlingReservation;
