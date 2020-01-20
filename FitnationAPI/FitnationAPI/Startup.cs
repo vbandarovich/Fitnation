@@ -20,6 +20,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Serilog;
 
 namespace FitnationAPI
@@ -84,6 +85,12 @@ namespace FitnationAPI
                     };
                 });
 
+            //===== Add Swagger =====
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitnationAPI", Version = "v1" });
+            });
+
             //----- Add CORS -----
             services.AddCors(options =>
             {
@@ -114,6 +121,12 @@ namespace FitnationAPI
             app.UseAuthentication();
 
             app.UseStatusCodePages();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FitnationAPI V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

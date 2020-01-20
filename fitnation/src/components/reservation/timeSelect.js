@@ -62,20 +62,7 @@ class TimeSelect extends React.Component {
   };
 
   render() {
-    // let time = [
-    //   { id: 0, label:'9:00 am - 10:00 am', value: '9:00 am - 10:00 am'},
-    //   { id: 1, label:'10:00 am - 11:00 am', value: '10:00 am - 11:00 am'},
-    //   { id: 2, label:'11:00 am - 12:00 am', value: '11:00 am - 12:00 am' },
-    //   { id: 3, label:'12:00 am - 1:00 pm', value: '12:00 am - 1:00 pm' },
-    //   { id: 4, label:'1:00 pm - 2:00 pm', value: '1:00 pm - 2:00 pm' },
-    //   { id: 5, label:'2:00 pm - 3:00 pm', value: '2:00 pm - 3:00 pm' },
-    //   { id: 6, label:'3:00 pm - 4:00 pm', value: '3:00 pm - 4:00 pm' },
-    //   { id: 7, label:'4:00 pm - 5:00 pm', value: '4:00 pm - 5:00 pm' },
-    //   { id: 8, label:'5:00 pm - 6:00 pm', value: '5:00 pm - 6:00 pm' },
-    //   { id: 9, label:'6:00 pm - 7:00 pm', value: '6:00 pm - 7:00 pm' },
-    // ];
-   
-   const { selectedOption, date, time } = this.state;
+   const { selectedOption, date, time, objNames } = this.state;
     return(
       <Select
         value={selectedOption}
@@ -83,7 +70,7 @@ class TimeSelect extends React.Component {
         options={time}
         isMulti="true"
         placeholder="Select time range..."
-        isDisabled={(date === null) ? true: false}
+        isDisabled={(date === null || objNames.length === 0) ? true: false}
       />
     )
   }

@@ -26,6 +26,11 @@ namespace FitnationAPI.Controllers
             _authHelper = authHelper;
         }
 
+        /// <summary>
+        /// Login action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Ok(string Id, string UserName, string Email, List<string> Roles, object Token)</returns>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] LoginModel model)
         {

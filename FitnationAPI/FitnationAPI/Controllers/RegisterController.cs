@@ -24,8 +24,13 @@ namespace FitnationAPI.Controllers
             _authHelper = authHelper;
         }
 
+        /// <summary>
+        /// Register action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Ok(string Id, string UserName, string Email, List<string> Roles, object Token)</returns>
         [HttpPost]
-        public async Task<object> Post([FromBody] RegisterModel model)
+        public async Task<IActionResult> Post([FromBody] RegisterModel model)
         {
             try
             {
@@ -57,12 +62,12 @@ namespace FitnationAPI.Controllers
                 }
 
                 Log.Error("SignInAsync was fail");
-                return Task.FromResult(false);
+                return BadRequest();
             }
             catch (Exception ex)
             {
                 Log.Error($"SignInAsync was fail with exception: {ex.Message}");
-                return null;
+                return StatusCode(500, "Internal server error");
             }
         }
     }

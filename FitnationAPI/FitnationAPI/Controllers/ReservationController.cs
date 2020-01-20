@@ -26,6 +26,11 @@ namespace FitnationAPI.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Reservation action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Status code 200</returns>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] ReservationModel model)
         {
@@ -60,7 +65,6 @@ namespace FitnationAPI.Controllers
                     Log.Error($"Reservation was fail: {ex.Message}");
                     return StatusCode(500, "Internal server error");
                 }
-
             }
 
             Log.Warning($"Reservation was fail: model is invalid");

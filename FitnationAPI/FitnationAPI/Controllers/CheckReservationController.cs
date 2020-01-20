@@ -23,7 +23,11 @@ namespace FitnationAPI.Controllers
             _mediator = mediator;
         }
 
-        //Get TimeRange for selected objects that's not reserved
+        /// <summary>
+        /// Check reservation time range action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>List<string></returns>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] ReservTimeRangeModel model)
         {
