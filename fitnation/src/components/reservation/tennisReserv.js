@@ -17,21 +17,23 @@ class TennisReservation extends React.Component {
         this.state = {
             selectedDate: null,
             error: false,
+            selectedObjects: [],
             currentUser: authenticationService.currentUserValue
         }
         this.onSubmit = this.onSubmit.bind(this);
+        this.updateObjects = this.updateObjects.bind(this);
     }
 
     onSubmit = () => {
         try{
             let userEmail = this.state.currentUser.email;
             let typeObject = 'Tennis';
-            let alleys = document.getElementsByClassName('mesta');
-            let selectedAlleys = [];
+            let tables = document.getElementsByClassName('mesta');
+            let selectedTables = [];
     
-            for(let j = 0; j < alleys.length; j++) {
-                if(alleys[j].style.background === 'red') {
-                    selectedAlleys.push(alleys[j].id);
+            for(let j = 0; j < tables.length; j++) {
+                if(tables[j].style.background === 'red') {
+                    selectedTables.push(tables[j].id);
                 }   
             }
     
@@ -42,7 +44,7 @@ class TennisReservation extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({"Email": userEmail, "TimeRange": timeRange, "Type": typeObject, 
-                    "ObjectNames": selectedAlleys, "DateReservation": this.state.selectedDate})
+                    "ObjectNames": selectedTables, "DateReservation": this.state.selectedDate})
             };
 
             fetch(`https://localhost:44348/api/reservation`, requestOptions)
@@ -60,8 +62,19 @@ class TennisReservation extends React.Component {
         }    
     }
 
+    updateObjects = () => {
+        let objects = document.getElementsByClassName('mesta');
+        let selected = [];
+        for(let k = 0; k < objects.length; k++) {
+            if(objects[k].style.background === 'red') {
+                selected.push(objects[k].id);
+            }   
+        }
+        this.setState({ selectedObjects: selected })
+    }
+
     render() {
-        const { selectedDate, error } = this.state;
+        const { selectedDate, error, selectedObjects } = this.state;
         var l = document.getElementsByClassName('mesta'); 
 
         function Count_Mest (){
@@ -70,7 +83,7 @@ class TennisReservation extends React.Component {
                     if(l[i].style.background === 'red'){
                         z_mest++;
                     }
-                }
+                }  
             return z_mest;
         }
 
@@ -78,10 +91,10 @@ class TennisReservation extends React.Component {
             l[i].onclick = function(){
                 if(this.style.background === 'red') {
                     this.style.background='silver';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
-                } else if(this.style.background !== 'SlateGray'){
+                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();                                  
+                } else {
                     this.style.background='red';
-                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();
+                    document.getElementById('count_').innerHTML = 'Selected tables : '+ Count_Mest ();             
                 } 
             }
         }
@@ -95,33 +108,27 @@ class TennisReservation extends React.Component {
         const tables = [
             {
             id: 1,
-            name: 'Table 1',
-            reserv: false
+            name: 'Table 1'
             },
             {
             id: 2,
-            name: 'Table 2',
-            reserv: false
+            name: 'Table 2'
             },
             {
             id: 3,
-            name: 'Table 3',
-            reserv: false
+            name: 'Table 3'
             },
             {
             id: 4,
-            name: 'Table 4',
-            reserv: false
+            name: 'Table 4'
             },
             {
             id: 5,
             name: 'Table 5',
-            reserv: false
             },
             {
             id: 6,
-            name: 'Table 6',
-            reserv: false
+            name: 'Table 6'
             },
             ]
 
@@ -148,7 +155,7 @@ class TennisReservation extends React.Component {
                                     </MuiPickersUtilsProvider>
                                 </div>  
                                 <div className="col-sm-5 col-md-4 time-select">
-                                    <TimeSelect />
+                                    <TimeSelect date={selectedDate} type='Tennis' objNames={selectedObjects}/>
                                 </div>                                
                             </div>                     
                             <div className="tennis">
@@ -159,7 +166,7 @@ class TennisReservation extends React.Component {
                                         id={item.name} 
                                         className='mesta' 
                                         style={{backgroundColor: item.reserv ? 'SlateGray' : 'silver'}}> 
-                                        <div style={{marginTop: '13px'}}>{item.name}</div>
+                                        <div onClick={this.updateObjects} style={{marginTop: '13px'}}>{item.name}</div>
                                         </div>
                                     ))}
                                 </div>        

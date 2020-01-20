@@ -84,12 +84,12 @@ class TennisReservation extends React.Component {
                                 </MuiPickersUtilsProvider>
                             </div>  
                             <div className="col-sm-5 col-md-4 time-select">
-                                <TimeSelect />
+                                <TimeSelect date={selectedDate} type='Gym' objNames={['Gym 1']}/>
                             </div>                                
                         </div>                          
                     </div> 
                     <MDBAlert  color='danger' className={error ? '' : ' sr-only'} dismiss>Check the correctness of the entered data</MDBAlert>
-                    <MDBBtn onClick={() => this.onSubmit()} className="teal darken-2" style={{marginTop: '160px'}}>Reserve</MDBBtn>
+                    <MDBBtn onClick={() => this.onSubmit()} className="teal darken-2" style={{marginTop: '190px'}}>Reserve</MDBBtn>
                 </div>
             </div>           
          </div>   

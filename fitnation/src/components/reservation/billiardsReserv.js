@@ -17,9 +17,11 @@ class BilliardsReservation extends React.Component {
         this.state = {
             selectedDate: null,
             error: false,
+            selectedObjects: [],
             currentUser: authenticationService.currentUserValue
         }
         this.onSubmit = this.onSubmit.bind(this);
+        this.updateObjects = this.updateObjects.bind(this);
     }
 
     onSubmit = () => {
@@ -60,8 +62,19 @@ class BilliardsReservation extends React.Component {
         }    
     }
 
+    updateObjects = () => {
+        let objects = document.getElementsByClassName('mesta');
+        let selected = [];
+        for(let k = 0; k < objects.length; k++) {
+            if(objects[k].style.background === 'red') {
+                selected.push(objects[k].id);
+            }   
+        }
+        this.setState({ selectedObjects: selected })
+    }
+
     render() {
-        const { selectedDate, error } = this.state;
+        const { selectedDate, error, selectedObjects } = this.state;
         var l = document.getElementsByClassName('mesta'); 
 
         function Count_Mest (){
@@ -143,7 +156,7 @@ class BilliardsReservation extends React.Component {
                                     </MuiPickersUtilsProvider>
                                 </div>  
                                 <div className="col-sm-5 col-md-4 time-select">
-                                    <TimeSelect />
+                                    <TimeSelect date={selectedDate} type='Billiards' objNames={selectedObjects}/>
                                 </div>                                
                             </div>                     
                             <div className="tennis">
@@ -154,7 +167,7 @@ class BilliardsReservation extends React.Component {
                                         id={item.name}
                                         className='mesta' 
                                         style={{backgroundColor: item.reserv ? 'SlateGray' : 'silver'}}> 
-                                        <div style={{marginTop: '13px'}}>{item.name}</div>
+                                        <div onClick={this.updateObjects} style={{marginTop: '13px'}}>{item.name}</div>
                                         </div>
                                     ))}
                                 </div>        
