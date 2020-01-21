@@ -14,3 +14,7 @@ FitnationAPI/Core/bin/
 FitnationAPI/Core/obj/
 
 FitnationAPI/FitnationAPI/logs/
+
+FitnationAPI/FitnationAPINotification/obj/
+
+FitnationAPI/FitnationAPINotification/bin/

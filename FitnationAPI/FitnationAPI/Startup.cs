@@ -119,6 +119,7 @@ namespace FitnationAPI
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseStatusCodePages();
 

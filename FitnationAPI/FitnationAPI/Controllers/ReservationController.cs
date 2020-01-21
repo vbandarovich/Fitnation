@@ -7,6 +7,7 @@ using FitnationAPI.CQS.Queries.QueryEntities;
 using FitnationAPI.Helpers;
 using FitnationAPI.Models;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -14,6 +15,7 @@ using Serilog;
 namespace FitnationAPI.Controllers
 {
     [Route("api/reservation")]
+    [Authorize]
     [ApiController]
     public class ReservationController : Controller
     {

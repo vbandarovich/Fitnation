@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnationAPI", "FitnationAPI\FitnationAPI.csproj", "{A8B9F6DA-2172-4451-88F8-2C5061762C77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnationAPI", "FitnationAPI\FitnationAPI.csproj", "{A8B9F6DA-2172-4451-88F8-2C5061762C77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{AA41D5E5-0A3E-4227-BD84-C47841BE8F2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{AA41D5E5-0A3E-4227-BD84-C47841BE8F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnationAPI.Data", "FitnationAPI.Data\FitnationAPI.Data.csproj", "{3D641418-D9CC-4E7C-A352-7891D8BC4340}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnationAPI.Data", "FitnationAPI.Data\FitnationAPI.Data.csproj", "{3D641418-D9CC-4E7C-A352-7891D8BC4340}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnationAPINotification", "FitnationAPINotification\FitnationAPINotification.csproj", "{C945E11D-974F-4A01-B030-05CAC2E37A6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3D641418-D9CC-4E7C-A352-7891D8BC4340}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D641418-D9CC-4E7C-A352-7891D8BC4340}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D641418-D9CC-4E7C-A352-7891D8BC4340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C945E11D-974F-4A01-B030-05CAC2E37A6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C945E11D-974F-4A01-B030-05CAC2E37A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C945E11D-974F-4A01-B030-05CAC2E37A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C945E11D-974F-4A01-B030-05CAC2E37A6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

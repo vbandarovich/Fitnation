@@ -15,7 +15,8 @@ class EditingPermissions extends React.Component {
       componentDidMount() {
         const requestOptions = {
             method: 'GET',
-            headers: { 'Content-Type': 'application/json' }
+            headers: { 'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.state.currentUser.token}` }
         };
 
         fetch(`https://localhost:44348/api/user`, requestOptions)

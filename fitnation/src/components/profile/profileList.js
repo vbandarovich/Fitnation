@@ -22,7 +22,8 @@ class ProfileList extends React.Component {
             let userId = currentUser.id;
             const requestOptions = {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.state.currentUser.token}` }
             };
 
             fetch(`https://localhost:44348/api/reservation?id=${userId}`, requestOptions)

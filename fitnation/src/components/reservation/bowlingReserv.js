@@ -42,7 +42,8 @@ class BowlingReservation extends React.Component {
 
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                Authorization: `Bearer ${this.state.currentUser.token}` },
                 body: JSON.stringify({"Email": userEmail, "TimeRange": timeRange, "Type": typeObject, 
                     "ObjectNames": selectedAlleys, "DateReservation": this.state.selectedDate})
             };

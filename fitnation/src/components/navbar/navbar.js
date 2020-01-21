@@ -64,7 +64,7 @@ class Navbar extends React.Component {
                                     <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
                                         <MDBDropdownItem>Sign Up</MDBDropdownItem>
                                     </a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="/profile" style={{margin:'0', padding:'0'}}>
                                         <MDBDropdownItem>My profile</MDBDropdownItem>
                                     </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
@@ -111,7 +111,7 @@ class Navbar extends React.Component {
                                     <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
                                         <MDBDropdownItem>Sign Up</MDBDropdownItem>
                                     </a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="/profile" style={{margin:'0', padding:'0'}}>
                                         <MDBDropdownItem>My profile</MDBDropdownItem>
                                     </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
