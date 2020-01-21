@@ -51,18 +51,20 @@ namespace FitnationAPI.Controllers
                             id = user.Id,
                             userName = user.UserName,
                             email = user.Email,
+                            phone = user.PhoneNumber,
                             roles = await _userManager.GetRolesAsync(user),
                             token = _authHelper.GenerateJwtToken(model.Email, user)
                         });
                     }
 
-                    return null;
+                    return Ok();
 
                 }
                 catch (Exception ex)
                 {
                     Log.Error($"Login operation was fail with exception: {ex.Message}");
-                    return null;
+                    return StatusCode(500, "Internal server error");
+                    
                 }
             }
 

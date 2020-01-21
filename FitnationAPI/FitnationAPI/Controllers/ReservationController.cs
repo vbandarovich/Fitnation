@@ -26,6 +26,46 @@ namespace FitnationAPI.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get(string id)
+        {
+            try
+            {
+                var list = new List<object>();
+                var reservRows = await _mediator.Send(new GetReservationsByUserIdQuery(id));
+                if (reservRows.Count != 0)
+                {
+                    foreach (var reservation in reservRows)
+                    {
+                        var date = reservation.DateReservation;
+                        var reservObject = await _mediator.Send(new GetReservationObjectByIdQuery(reservation.ReservationObjectId));
+                        var objectName = reservObject.Name;
+                        var objectType = await _mediator.Send(new GetObjectTypeByIdQuery(reservObject.ObjectTypeId));
+                        var type = objectType.Name;
+                        var time = await _mediator.Send(new GetTimeByIdQuery(reservation.ReservationTimeId));
+                        list.Add(new
+                        {
+                            Id = reservation.Id,
+                            Date = date.ToShortDateString(),
+                            Type = type,
+                            Name = objectName,
+                            Time = time
+                        });
+                    }
+
+                    Log.Information("Get reservations for user was succeded");
+                    return Ok(list);
+                }
+                Log.Information("User don't have any reservations");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Get reservations for user was fail with exception: {ex.Message}");
+                return BadRequest();
+            }
+        }
+
         /// <summary>
         /// Reservation action
         /// </summary>

@@ -56,6 +56,7 @@ namespace FitnationAPI.Controllers
                         id = user.Id,
                         userName = user.UserName,
                         email = user.Email,
+                        phone = user.PhoneNumber,
                         roles = await _userManager.GetRolesAsync(user),
                         token = _authHelper.GenerateJwtToken(model.Email, user)
                     });

@@ -87,7 +87,8 @@ class Sidenav extends React.Component {
                              </NavText>
                          </NavItem>
                      </NavItem> 
-                     <NavItem className={authenticationService.currentUserValue.roles.some(admin) ? '' : 'sr-only'} eventKey="admin">
+                     <NavItem className={authenticationService.currentUserValue !== null && authenticationService.currentUserValue.roles.some(admin) ? '' : 'sr-only'} 
+                     eventKey="admin">
                          <NavIcon>
                          <MDBIcon icon="user-cog" style={{ fontSize: '1.75em' }}/>
                          </NavIcon>

@@ -3,6 +3,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Sidenav from '../components/sidenav/sidenav';
 import Navbar from '../components/navbar/navbar';
 import { authenticationService } from '../services/authenticationService';
+import ProfileForm from '../components/profile/profileForm';
+import ProfileList from '../components/profile/profileList';
 import '../styles/profile/profile.css';
 
 class ProfilePage extends React.Component {
@@ -32,7 +34,9 @@ class ProfilePage extends React.Component {
         return(
             <BrowserRouter>
                 <Navbar expanded={this.state.expanded} updateAuth={this.updateAuth}/>
-                <Sidenav updateState={this.updateState} updateAuth={this.updateAuth} selected='profile/myProfile'/>   
+                <Sidenav updateState={this.updateState} updateAuth={this.updateAuth} selected='profile/myProfile'/> 
+                <ProfileForm /> 
+                <ProfileList /> 
             </BrowserRouter>
         )
     }
