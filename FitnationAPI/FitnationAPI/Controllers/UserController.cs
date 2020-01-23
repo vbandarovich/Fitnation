@@ -38,12 +38,12 @@ namespace FitnationAPI.Controllers
                     Id = s.Id,
                     Email = s.Email
                 }).ToListAsync();
-                Log.Error("Get users was succeded");
+                Log.Error("Get users was succeeded");
                 return Ok(users);
             }
             catch (Exception ex)
             {
-                Log.Error($"Get users was fail with exception: {ex.Message}");
+                Log.Error($"Get users was failed with exception: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

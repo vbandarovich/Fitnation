@@ -1,0 +1,24 @@
+2020-01-23 13:52:45.011 +03:00 [DBG] Trying to connect
+2020-01-23 13:52:45.251 +03:00 [DBG] OnConnected event fired
+2020-01-23 13:52:45.256 +03:00 [INF] Connected to broker localhost, port 5672, vhost /
+2020-01-23 13:52:45.272 +03:00 [INF] Start listening host: localhost
+2020-01-23 13:52:45.297 +03:00 [DBG] Persistent channel connected
+2020-01-23 13:52:45.301 +03:00 [DBG] Declared queue Core.Message, Core_reservation: durable=true, exclusive=false, autoDelete=false, arguments=
+2020-01-23 13:52:45.309 +03:00 [DBG] Declared exchange Core.Message, Core: type=topic, durable=true, autoDelete=false, arguments=
+2020-01-23 13:52:45.313 +03:00 [DBG] Bound queue Core.Message, Core_reservation to exchange Core.Message, Core with routingKey=# and arguments=
+2020-01-23 13:52:45.350 +03:00 [INF] Declared consumer with consumerTag 43f6e594-b7cb-4fea-8f18-19c21737990c on queue Core.Message, Core_reservation and configuration [Priority=0, IsExclusive=False, PrefetchCount=50]
+2020-01-23 13:54:07.976 +03:00 [DBG] Message delivered to consumer 43f6e594-b7cb-4fea-8f18-19c21737990c with deliveryTag 1
+2020-01-23 13:54:07.982 +03:00 [DBG] Received message with receivedInfo=[ConsumerTag=43f6e594-b7cb-4fea-8f18-19c21737990c, DeliverTag=1, Redelivered=False, Exchange=Core.Message, Core, RoutingKey=, Queue=Core.Message, Core_reservation]
+2020-01-23 13:54:59.384 +03:00 [DBG] Message delivered to consumer 43f6e594-b7cb-4fea-8f18-19c21737990c with deliveryTag 2
+2020-01-23 13:54:59.385 +03:00 [DBG] Received message with receivedInfo=[ConsumerTag=43f6e594-b7cb-4fea-8f18-19c21737990c, DeliverTag=2, Redelivered=False, Exchange=Core.Message, Core, RoutingKey=, Queue=Core.Message, Core_reservation]
+2020-01-23 14:01:50.754 +03:00 [DBG] Trying to connect
+2020-01-23 14:01:50.979 +03:00 [DBG] OnConnected event fired
+2020-01-23 14:01:50.983 +03:00 [INF] Connected to broker localhost, port 5672, vhost /
+2020-01-23 14:01:51.000 +03:00 [INF] Start listening host: localhost
+2020-01-23 14:01:51.029 +03:00 [DBG] Persistent channel connected
+2020-01-23 14:01:51.034 +03:00 [DBG] Declared queue Core.Message, Core_reservation: durable=true, exclusive=false, autoDelete=false, arguments=
+2020-01-23 14:01:51.041 +03:00 [DBG] Declared exchange Core.Message, Core: type=topic, durable=true, autoDelete=false, arguments=
+2020-01-23 14:01:51.046 +03:00 [DBG] Bound queue Core.Message, Core_reservation to exchange Core.Message, Core with routingKey=# and arguments=
+2020-01-23 14:01:51.092 +03:00 [INF] Declared consumer with consumerTag e595bf4d-41a7-4cdc-9afa-d4d09a199b98 on queue Core.Message, Core_reservation and configuration [Priority=0, IsExclusive=False, PrefetchCount=50]
+2020-01-23 14:02:40.385 +03:00 [DBG] Message delivered to consumer e595bf4d-41a7-4cdc-9afa-d4d09a199b98 with deliveryTag 1
+2020-01-23 14:02:40.393 +03:00 [DBG] Received message with receivedInfo=[ConsumerTag=e595bf4d-41a7-4cdc-9afa-d4d09a199b98, DeliverTag=1, Redelivered=False, Exchange=Core.Message, Core, RoutingKey=, Queue=Core.Message, Core_reservation]

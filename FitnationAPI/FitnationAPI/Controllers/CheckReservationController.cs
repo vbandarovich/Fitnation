@@ -45,7 +45,7 @@ namespace FitnationAPI.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"Get reservation time range was fail: {ex.Message}");
+                    Log.Error($"Get reservation time range was failed: {ex.Message}");
                     return StatusCode(500, "Internal server error");
                 }
             }

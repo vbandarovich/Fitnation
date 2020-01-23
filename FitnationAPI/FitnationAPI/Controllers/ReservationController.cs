@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core;
+using EasyNetQ;
 using FitnationAPI.CQS.Commands.CommandEntities;
 using FitnationAPI.CQS.Queries.QueryEntities;
 using FitnationAPI.Helpers;
@@ -55,7 +57,7 @@ namespace FitnationAPI.Controllers
                         });
                     }
 
-                    Log.Information("Get reservations for user was succeded");
+                    Log.Information("Get reservations for user was succeeded");
                     return Ok(list);
                 }
                 Log.Information("User don't have any reservations");
@@ -63,7 +65,7 @@ namespace FitnationAPI.Controllers
             }
             catch (Exception ex)
             {
-                Log.Error($"Get reservations for user was fail with exception: {ex.Message}");
+                Log.Error($"Get reservations for user was failed with exception: {ex.Message}");
                 return BadRequest();
             }
         }
@@ -99,17 +101,31 @@ namespace FitnationAPI.Controllers
                         }
                     }
 
-                    Log.Information($"Reservation was succeded");
+                    using (var bus = RabbitHutch.CreateBus("host=localhost"))
+                    {
+                        bus.Publish(new Message
+                            {
+                                Email = model.Email,
+                                ObjectType = model.Type,
+                                DateReservation = model.DateReservation.ToShortDateString(),
+                                ObjectNames = model.ObjectNames,
+                                TimeRange = model.TimeRange.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                            });
+
+                        Log.Information($"Publish message was succeeded");
+                    }
+
+                    Log.Information($"Reservation was succeeded");
                     return Ok();
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"Reservation was fail: {ex.Message}");
+                    Log.Error($"Reservation was failed: {ex.Message}");
                     return StatusCode(500, "Internal server error");
                 }
             }
 
-            Log.Warning($"Reservation was fail: model is invalid");
+            Log.Warning($"Reservation was failed: model is invalid");
             return BadRequest();
         }
     }

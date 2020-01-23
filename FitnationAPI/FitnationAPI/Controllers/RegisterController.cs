@@ -47,9 +47,9 @@ namespace FitnationAPI.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, "user");
 
-                    Log.Information("Create user was successfully");
+                    Log.Information("Create user was succeeded");
 
-                    Log.Information("SignInAsync was successfully");
+                    Log.Information("SignInAsync was succeeded");
 
                     return Ok(new
                     {
@@ -62,12 +62,12 @@ namespace FitnationAPI.Controllers
                     });
                 }
 
-                Log.Error("SignInAsync was fail");
+                Log.Error("SignInAsync was failed");
                 return BadRequest();
             }
             catch (Exception ex)
             {
-                Log.Error($"SignInAsync was fail with exception: {ex.Message}");
+                Log.Error($"SignInAsync was failed with exception: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
         }

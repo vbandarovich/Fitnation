@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using FitnationAPI.CQS.Commands.CommandEntities;
 using FitnationAPI.Data;
 using MediatR;
+using Serilog;
 
 namespace FitnationAPI.CQS.Commands.Handlers
 {
@@ -38,6 +39,7 @@ namespace FitnationAPI.CQS.Commands.Handlers
             }
             catch (Exception ex)
             {
+                Log.Error($"Reservation was failed with exception: {ex.Message}");
                 return false;
             }
         }

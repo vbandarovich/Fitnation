@@ -45,7 +45,7 @@ namespace FitnationAPI.Controllers
 
                     if (result.Succeeded)
                     {
-                        Log.Information("Login operation was successfully");
+                        Log.Information("Login operation was succeeded");
                         return Ok(new
                         {
                             id = user.Id,
@@ -62,13 +62,13 @@ namespace FitnationAPI.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"Login operation was fail with exception: {ex.Message}");
+                    Log.Error($"Login operation was failed with exception: {ex.Message}");
                     return StatusCode(500, "Internal server error");
                     
                 }
             }
 
-            Log.Warning($"Create user was fail: model is invalid");
+            Log.Warning($"Create user was failed: model is invalid");
             return BadRequest();
         }
     }

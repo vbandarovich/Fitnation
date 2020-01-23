@@ -37,12 +37,12 @@ namespace FitnationAPI.Controllers
                     Id = s.Id,
                     Name = s.Name
                 }).ToListAsync();
-                Log.Error("Get roles was succeded");
+                Log.Error("Get roles was succeeded");
                 return Ok(roles);
             }
             catch (Exception ex)
             {
-                Log.Error($"Get roles was fail with exception: {ex.Message}");
+                Log.Error($"Get roles was failed with exception: {ex.Message}");
                 return null;
             }
         }
