@@ -9,7 +9,7 @@ namespace FitnationAPINotification.Services
 {
     public class MessageHandler : IMessageHandler
     {
-        private IEmailSender _emailSender;
+        private readonly IEmailSender _emailSender;
 
         public MessageHandler(IEmailSender emailSender)
         {
@@ -33,6 +33,10 @@ namespace FitnationAPINotification.Services
                 $"Hi, {message.Email} \n You reserved {names} \n Date: {message.DateReservation}" +
                 $"\n Type: {message.ObjectType}" +
                 $"\n Time range: {timeRange} ");
+
+            TelegramNotification telegram = new TelegramNotification();
+            telegram.Execute($"Good day! User {message.Email} just now reserved {message.ObjectType} objects: {names}. " +
+                             $"Date - {message.DateReservation}. Time range: {timeRange}. Have a nice day!");
         }
     }
 }
