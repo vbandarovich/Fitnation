@@ -26,6 +26,11 @@ namespace FitnationAPI.Controllers
             _authHelper = authHelper;
         }
 
+        /// <summary>
+        /// Login action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Ok(string Id, string UserName, string Email, List<string> Roles, object Token)</returns>
         [HttpPost]
         public async Task<ActionResult> Post([FromBody] LoginModel model)
         {
@@ -40,28 +45,30 @@ namespace FitnationAPI.Controllers
 
                     if (result.Succeeded)
                     {
-                        Log.Information("Login operation was successfully");
+                        Log.Information("Login operation was succeeded");
                         return Ok(new
                         {
                             id = user.Id,
                             userName = user.UserName,
                             email = user.Email,
+                            phone = user.PhoneNumber,
                             roles = await _userManager.GetRolesAsync(user),
-                            token = _authHelper.GenerateJwtToken(model.Email, user)
+                            token = await _authHelper.GenerateJwtToken(model.Email, user)
                         });
                     }
 
-                    return null;
+                    return Ok();
 
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"Login operation was fail with exception: {ex.Message}");
-                    return null;
+                    Log.Error($"Login operation was failed with exception: {ex.Message}");
+                    return StatusCode(500, "Internal server error");
+                    
                 }
             }
 
-            Log.Warning($"Create user was fail: model is invalid");
+            Log.Warning($"Create user was failed: model is invalid");
             return BadRequest();
         }
     }

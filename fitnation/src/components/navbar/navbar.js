@@ -43,6 +43,7 @@ class Navbar extends React.Component {
 
     render() {
          const { expanded, currentUser } = this.state;
+
          if(expanded) {
             return(
                 <MDBNavbar color='default-color-dark' dark expand="md">
@@ -57,9 +58,15 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left='true'>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign In</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign Up</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="/profile" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>My profile</MDBDropdownItem>
+                                    </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
@@ -98,13 +105,19 @@ class Navbar extends React.Component {
                                  <MDBIcon icon="user" />
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu basic left='true'>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign In</MDBDropdownItem></a>
-                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}><MDBDropdownItem>Sign Up</MDBDropdownItem></a>
-                                    <a className={(currentUser === null) ? 'd-none' : ''} href="#!" style={{margin:'0', padding:'0'}}><MDBDropdownItem>My profile</MDBDropdownItem></a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/login" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign In</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser !== null) ? 'd-none' : ''} href="/register" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>Sign Up</MDBDropdownItem>
+                                    </a>
+                                    <a className={(currentUser === null) ? 'd-none' : ''} href="/profile" style={{margin:'0', padding:'0'}}>
+                                        <MDBDropdownItem>My profile</MDBDropdownItem>
+                                    </a>
                                     <MDBDropdownItem className={(currentUser === null) ? 'd-none' : ''}  onClick={this.logout}>Logout</MDBDropdownItem>
                                 </MDBDropdownMenu>
                             </MDBDropdown>
-                        </MDBNavItem>
+                        </MDBNavItem>                                             
                         <MDBNavItem>
                             <MDBNavLink className="waves-effect waves-light" to="#!">
                             <MDBIcon fab icon="vk" />
@@ -117,10 +130,11 @@ class Navbar extends React.Component {
                         </MDBNavItem>
                         <MDBNavItem>
                             <MDBNavLink className="waves-effect waves-light" to="#!">
-                                <MDBIcon fab icon="telegram" />
+                            <MDBIcon fab icon="telegram" />
                             </MDBNavLink>
                         </MDBNavItem>
-                          
+                        <MDBNavItem>
+                        </MDBNavItem>
                         </MDBNavbarNav>
                         </MDBCollapse>
                 </MDBNavbar>

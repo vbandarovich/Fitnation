@@ -24,8 +24,13 @@ namespace FitnationAPI.Controllers
             _authHelper = authHelper;
         }
 
+        /// <summary>
+        /// Register action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>Ok(string Id, string UserName, string Email, List<string> Roles, object Token)</returns>
         [HttpPost]
-        public async Task<object> Post([FromBody] RegisterModel model)
+        public async Task<IActionResult> Post([FromBody] RegisterModel model)
         {
             try
             {
@@ -42,27 +47,28 @@ namespace FitnationAPI.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, "user");
 
-                    Log.Information("Create user was successfully");
+                    Log.Information("Create user was succeeded");
 
-                    Log.Information("SignInAsync was successfully");
+                    Log.Information("SignInAsync was succeeded");
 
                     return Ok(new
                     {
                         id = user.Id,
                         userName = user.UserName,
                         email = user.Email,
+                        phone = user.PhoneNumber,
                         roles = await _userManager.GetRolesAsync(user),
-                        token = _authHelper.GenerateJwtToken(model.Email, user)
+                        token = await _authHelper.GenerateJwtToken(model.Email, user)
                     });
                 }
 
-                Log.Error("SignInAsync was fail");
-                return Task.FromResult(false);
+                Log.Error("SignInAsync was failed");
+                return BadRequest();
             }
             catch (Exception ex)
             {
-                Log.Error($"SignInAsync was fail with exception: {ex.Message}");
-                return null;
+                Log.Error($"SignInAsync was failed with exception: {ex.Message}");
+                return StatusCode(500, "Internal server error");
             }
         }
     }

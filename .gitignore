@@ -12,3 +12,11 @@ FitnationAPI/FitnationAPI.Data/obj/
 FitnationAPI/Core/bin/
 
 FitnationAPI/Core/obj/
+
+FitnationAPI/FitnationAPI/logs/
+
+FitnationAPI/FitnationAPINotification/obj/
+
+FitnationAPI/FitnationAPINotification/bin/
+
+FitnationAPI/FitnationAPINotification/logs/

@@ -2,11 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Core
 {
     public interface IAuthHelper
     {
-        object GenerateJwtToken(string email, IdentityUser user);
+        Task<object> GenerateJwtToken(string email, IdentityUser user);
     }
 }

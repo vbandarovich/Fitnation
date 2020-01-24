@@ -13,6 +13,7 @@ class Sidenav extends React.Component {
             expanded: false,
             selected: props.selected,
             currentUser: authenticationService.currentUserValue,
+            isAdmin: false,
             isAuthorize: false
         }
         this.logout = this.logout.bind(this);
@@ -36,6 +37,7 @@ class Sidenav extends React.Component {
 
     render() {
         const { currentUser } = this.state;
+        const admin = (element) => element === 'admin';
 
         if(currentUser !== null) {
             return(
@@ -74,7 +76,7 @@ class Sidenav extends React.Component {
                          <NavText>
                              Profile
                          </NavText>
-                         <NavItem className='disabled' eventKey="profile/myProfile">
+                         <NavItem onClick={()=> window.location='/profile'} eventKey="profile/myProfile">
                              <NavText>
                                  My profile
                              </NavText>
@@ -84,7 +86,41 @@ class Sidenav extends React.Component {
                                  Logout
                              </NavText>
                          </NavItem>
-                     </NavItem>         
+                     </NavItem> 
+                     <NavItem className={authenticationService.currentUserValue !== null && authenticationService.currentUserValue.roles.some(admin) ? '' : 'sr-only'} 
+                     eventKey="admin">
+                         <NavIcon>
+                         <MDBIcon icon="user-cog" style={{ fontSize: '1.75em' }}/>
+                         </NavIcon>
+                         <NavText>
+                             Admin
+                         </NavText>
+                         <NavItem onClick={()=> window.location='/admin/list-users'} eventKey="admin/list-users">
+                             <NavText>
+                                 List users
+                             </NavText>
+                         </NavItem>
+                         <NavItem onClick={()=> window.location='/admin/list-moderators'} eventKey="admin/list-moderators">
+                             <NavText>
+                                 List moderators
+                             </NavText>
+                         </NavItem>
+                         <NavItem onClick={()=> window.location='/admin/list-roles'} eventKey="admin/list-roles">
+                             <NavText>
+                             List roles
+                             </NavText>
+                         </NavItem>
+                         <NavItem onClick={()=> window.location='/admin/editing-permissions'} eventKey="admin/editing-permissions">
+                             <NavText>
+                             Editing Permissions
+                             </NavText>
+                         </NavItem>
+                         <NavItem onClick={()=> window.location='/admin/swagger'} eventKey="admin/swagger">
+                             <NavText>
+                             Go to swagger
+                             </NavText>
+                         </NavItem>
+                     </NavItem> 
                      <NavItem eventKey="reservation">
                          <NavIcon>
                          <MDBIcon far icon="calendar-alt" style={{ fontSize: '1.75em' }}/>

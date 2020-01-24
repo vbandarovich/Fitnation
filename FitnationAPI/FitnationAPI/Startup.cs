@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Core;
 using FitnationAPI.Data;
 using FitnationAPI.Helpers;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -19,6 +19,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Serilog;
 
 namespace FitnationAPI
 {
@@ -27,6 +29,12 @@ namespace FitnationAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File("logs\\log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
         }
 
         public IConfiguration Configuration { get; }
@@ -41,6 +49,11 @@ namespace FitnationAPI
             services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            //===== Add MediatR =====
+            var assembly = AppDomain.CurrentDomain.Load("FitnationAPI");
+            services.AddMediatR(assembly);
+            services.AddTransient<IMediator, Mediator>();
 
             //===== Add AuthHelper =====
             services.AddTransient<IAuthHelper, AuthHelper>();
@@ -71,6 +84,12 @@ namespace FitnationAPI
                     };
                 });
 
+            //===== Add Swagger =====
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitnationAPI", Version = "v1" });
+            });
+
             //----- Add CORS -----
             services.AddCors(options =>
             {
@@ -99,8 +118,15 @@ namespace FitnationAPI
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseStatusCodePages();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "FitnationAPI V1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

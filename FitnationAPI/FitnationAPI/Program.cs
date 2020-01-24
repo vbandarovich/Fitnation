@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FitnationAPI.Data;
+using FitnationAPI.Data.Initializers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,12 @@ namespace FitnationAPI
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                     var rolesManager = services.GetRequiredService<RoleManager<IdentityRole>>();
                     await RoleInitializer.InitializeAsync(userManager, rolesManager);
+
+                    var db = services.GetRequiredService<ApplicationDbContext>();
+                    await ObjectTypesInitializer.InitializeAsync(db);
+                    await TimeRangeInitializer.InitializeAsync(db);
+                    await PriceListInitializer.InitializeAsync(db);
+                    await ReservationObjectsInitializer.InitializeAsync(db);
                 }
                 catch (Exception ex)
                 {

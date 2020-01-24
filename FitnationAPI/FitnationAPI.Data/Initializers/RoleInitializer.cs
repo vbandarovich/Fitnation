@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-namespace FitnationAPI.Data
+namespace FitnationAPI.Data.Initializers
 {
     public class RoleInitializer
     {
