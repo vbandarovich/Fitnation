@@ -39,8 +39,6 @@ namespace FitnationAPI.Controllers
                 try
                 {
                     var user = await _userManager.FindByEmailAsync(model.Email);
-
-
                     var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, true);
 
                     if (result.Succeeded)
@@ -56,9 +54,7 @@ namespace FitnationAPI.Controllers
                             token = await _authHelper.GenerateJwtToken(model.Email, user)
                         });
                     }
-
                     return Ok();
-
                 }
                 catch (Exception ex)
                 {
@@ -67,7 +63,6 @@ namespace FitnationAPI.Controllers
                     
                 }
             }
-
             Log.Warning($"Create user was failed: model is invalid");
             return BadRequest();
         }

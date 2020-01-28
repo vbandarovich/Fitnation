@@ -62,6 +62,12 @@ const Routes = () => (
           :  <Redirect to='/' />
         }        
         } />
+        <Route exact path='/admin/swagger' component={() => {
+          return (authenticationService.currentUserValue !== null && authenticationService.currentUserValue.roles.some(admin))
+          ?  window.location.href = 'https://localhost:44348/swagger/index.html'
+          :  <Redirect to='/' />
+        }        
+        } />
         <Route path='/contact' component={ContactPage} />
         <Route path='/gallery' component={GalleryPage} />
       </Switch>

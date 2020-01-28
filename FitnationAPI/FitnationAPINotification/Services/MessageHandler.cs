@@ -16,7 +16,6 @@ namespace FitnationAPINotification.Services
             _emailSender = emailSender;
         }
 
-
         public async Task SendMessage(Message message)
         {
             StringBuilder names = new StringBuilder();
