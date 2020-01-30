@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Threading.Tasks;
 using FitnationAPI.Models;
@@ -46,6 +47,33 @@ namespace FitnationAPI.Controllers
                 Log.Error($"Get users was failed with exception: {ex.Message}");
                 return StatusCode(500, "Internal server error");
             }
+        }
+
+        /// <summary>
+        /// Delete users by id
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns>Ok(List<UserModel> users)</returns>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(s => s.Id.Equals(Id));
+            if (user != null)
+            {
+                var result = await _userManager.DeleteAsync(user);
+
+                if (result.Succeeded)
+                {
+                    return Ok(await _userManager.Users.Select(s => new
+                    {
+                        Id = s.Id,
+                        Email = s.Email
+                    })
+                        .ToListAsync());
+                }
+            }
+
+            return BadRequest();
         }
     }
 }

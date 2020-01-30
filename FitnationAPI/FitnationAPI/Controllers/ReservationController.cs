@@ -42,7 +42,8 @@ namespace FitnationAPI.Controllers
                     foreach (var reservation in reservRows)
                     {
                         var date = reservation.DateReservation;
-                        var reservObject = await _mediator.Send(new GetReservationObjectByIdQuery(reservation.ReservationObjectId));
+                        var reservObject =
+                            await _mediator.Send(new GetReservationObjectByIdQuery(reservation.ReservationObjectId));
                         var objectName = reservObject.Name;
                         var objectType = await _mediator.Send(new GetObjectTypeByIdQuery(reservObject.ObjectTypeId));
                         var type = objectType.Name;
@@ -60,6 +61,7 @@ namespace FitnationAPI.Controllers
                     Log.Information("Get reservations for user was succeeded");
                     return Ok(list);
                 }
+
                 Log.Information("User don't have any reservations");
                 return Ok();
             }
@@ -82,7 +84,7 @@ namespace FitnationAPI.Controllers
             {
                 try
                 {
-                    var reservationHelper = new ReservationHelper( _mediator);
+                    var reservationHelper = new ReservationHelper(_mediator);
 
                     var user = await _userManager.FindByEmailAsync(model.Email);
                     var typeId = await _mediator.Send(new GetTypeIdByNameQuery(model.Type));
@@ -97,20 +99,21 @@ namespace FitnationAPI.Controllers
                     {
                         foreach (var time in timeEntities)
                         {
-                            await _mediator.Send(new ReservationCommand(user.Id, model.DateReservation, time.Id, obj, price));
+                            await _mediator.Send(new ReservationCommand(user.Id, model.DateReservation, time.Id, obj,
+                                price));
                         }
                     }
 
                     using (var bus = RabbitHutch.CreateBus("host=localhost"))
                     {
                         bus.Publish(new Message
-                            {
-                                Email = model.Email,
-                                ObjectType = model.Type,
-                                DateReservation = model.DateReservation.ToShortDateString(),
-                                ObjectNames = model.ObjectNames,
-                                TimeRange = model.TimeRange.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
-                            });
+                        {
+                            Email = model.Email,
+                            ObjectType = model.Type,
+                            DateReservation = model.DateReservation.ToShortDateString(),
+                            ObjectNames = model.ObjectNames,
+                            TimeRange = model.TimeRange.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
+                        });
 
                         Log.Information($"Publish message was succeeded");
                     }
@@ -127,6 +130,24 @@ namespace FitnationAPI.Controllers
 
             Log.Warning($"Reservation was failed: model is invalid");
             return BadRequest();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string Id)
+        {
+            try
+            {
+                var reservationId = Guid.Parse(Id);
+                await _mediator.Send(new DeleteReservationCommand(reservationId));
+
+                Log.Information("Delete reservation was succeeded");
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Delete reservation was failed: {ex.Message}");
+                return StatusCode(500, "Internal server error");
+            }
         }
     }
 }

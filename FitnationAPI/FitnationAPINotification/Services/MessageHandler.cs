@@ -16,7 +16,6 @@ namespace FitnationAPINotification.Services
             _emailSender = emailSender;
         }
 
-
         public async Task SendMessage(Message message)
         {
             StringBuilder names = new StringBuilder();
@@ -35,8 +34,8 @@ namespace FitnationAPINotification.Services
                 $"\n Time range: {timeRange} ");
 
             TelegramNotification telegram = new TelegramNotification();
-            telegram.Execute($"Good day! User {message.Email} just now reserved {message.ObjectType} objects: {names}. " +
-                             $"Date - {message.DateReservation}. Time range: {timeRange}. Have a nice day!");
+            telegram.Execute($"Good day!\n User {message.Email} just now reserved {message.ObjectType} objects: {names}.  " +
+                             $"\nDate - {message.DateReservation}. \nTime range: {timeRange}. \nHave a nice day!");
         }
     }
 }

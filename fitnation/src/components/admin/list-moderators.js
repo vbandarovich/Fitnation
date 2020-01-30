@@ -30,6 +30,24 @@ class ListModerators extends React.Component {
             )
     }
 
+    OnDelete = (userId) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.state.currentUser.token}` }
+        };
+
+        fetch(`https://localhost:44348/api/user/${userId}`, requestOptions)
+            .then(handleResponse)
+            .then(
+                (result) => {
+                    this.setState({
+                        users: result
+                    })
+                }     
+            )
+    }
+
     render() {
         const { users } = this.state;
         return(
@@ -47,7 +65,7 @@ class ListModerators extends React.Component {
                         <tr key={item} id={item}>
                         <td>{item}</td>
                         <td>
-                            <button  className="btn btn-sm btn-danger">
+                            <button onClick={()=> this.OnDelete(item.id)}  className="btn btn-sm btn-danger">
                                 Delete
                             </button>
                         </td>

@@ -30,6 +30,24 @@ class ListUsers extends React.Component {
             )
     }
 
+    OnDelete = (userId) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.state.currentUser.token}` }
+        };
+
+        fetch(`https://localhost:44348/api/user/${userId}`, requestOptions)
+            .then(handleResponse)
+            .then(
+                (result) => {
+                    this.setState({
+                        users: result
+                    })
+                }     
+            )
+    }
+
     render() {
         const { users } = this.state;
 
@@ -45,10 +63,10 @@ class ListUsers extends React.Component {
                     </thead>
                    <tbody>
                    {users.map(item => (
-                        <tr key={item.id} id={item.id}>
+                        <tr key={item.id}>
                         <td>{item.email}</td>
                         <td>
-                            <button  className="btn btn-sm btn-danger">
+                            <button onClick={()=> this.OnDelete(item.id)} className="btn btn-sm btn-danger">
                                 Delete
                             </button>
                         </td>

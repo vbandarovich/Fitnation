@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FitnationAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -23,18 +24,26 @@ namespace FitnationAPI.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Get moderators
+        /// </summary>
+        /// <returns>List<UserModel> moderators</returns>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var users = new List<string>();
+                var users = new List<UserModel>();
                 foreach (var user in _userManager.Users)
                 {
                     var result = await _userManager.IsInRoleAsync(user, "admin");
                     if (result)
                     {
-                        users.Add(user.Email);
+                        users.Add(new UserModel()
+                        {
+                            Id = user.Id,
+                            Email = user.Email
+                        });;
                     }
                 }
                 Log.Error("Get users was succeeded");
