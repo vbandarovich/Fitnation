@@ -14,6 +14,7 @@ class ProfileList extends React.Component {
             error: false,
             currentUser: authenticationService.currentUserValue
           }
+          this.OnDelete = this.OnDelete.bind(this);
     }
 
     componentDidMount() {
@@ -43,6 +44,20 @@ class ProfileList extends React.Component {
         } 
     }
 
+    OnDelete = (reservationId, rowNumber) => {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json',
+            Authorization: `Bearer ${this.state.currentUser.token}` }
+        };
+
+        fetch(`https://localhost:44348/api/reservation/${reservationId}`, requestOptions)
+            .then(handleResponse)
+        
+        let row = document.getElementById(rowNumber);
+        row.hidden = true;
+    }
+
     render() {
         const { reservations, error } = this.state;
         let number = 0;
@@ -62,14 +77,14 @@ class ProfileList extends React.Component {
                 </MDBTableHead>
                 <MDBTableBody>
                     {reservations.map(item => (
-                        <tr key={++number}>
+                        <tr key={++number} id={number}>
                             <td>{number}</td>
                             <td>{item.date}</td>
                             <td>{item.type}</td>
                             <td>{item.name}</td>
                             <td>{item.time}</td>
-                            <td id={item.id}>
-                                <MDBBtn color='red' size='sm'>Delete</MDBBtn>
+                            <td>
+                                <MDBBtn onClick={()=> this.OnDelete(item.id, number)} color='red' size='sm'>Delete</MDBBtn>
                             </td>
                         </tr>
                     ))}             
@@ -83,11 +98,11 @@ class ProfileList extends React.Component {
                 <MDBTable>
                 <MDBTableHead color="primary-color" textWhite>
                     <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Time</th>
+                        <th>#</th>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Name</th>
+                        <th>Time</th>
                     </tr>
                 </MDBTableHead>
                 <MDBTableBody>
